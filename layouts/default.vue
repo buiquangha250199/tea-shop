@@ -1,18 +1,5 @@
 <template>
   <v-app dark class="default-layout">
-    <v-navigation-drawer v-model="drawer" absolute temporary app>
-      <v-list dense>
-        <v-list-item-group color="primary">
-          <v-list-item v-for="(item, i) in items" :key="i">
-            <v-list-item-content>
-              <v-list-item-title class="text-subtitle-2">{{
-                item.text
-              }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-navigation-drawer>
     <v-system-bar
       ref="system-bar"
       :class="['top-header', fixed ? '-fixed elevation-3' : '']"
@@ -30,7 +17,7 @@
           hide-details="auto"
           class="input"
         ></v-text-field>
-        <v-btn class="btn" color="green">
+        <v-btn class="btn" color="green darken-2">
           <span class="mdi mdi-magnify"></span>
         </v-btn>
       </div>
@@ -45,20 +32,24 @@
         </div>
       </div>
     </v-system-bar>
-    <v-app-bar class="nav-bar" :clipped-left="clipped" absolute app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+    <v-app-bar
+      class="nav-bar main-container"
+      :clipped-left="clipped"
+      absolute
+      app
+    >
       <v-row align="center" class="app-link">
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn
               class="menubtn"
-              color="green"
+              color="green darken-2"
               text
               x-large
               v-bind="attrs"
               v-on="on"
             >
-              <span class="mdi mdi-menu-down text-large"></span>
+              <div class="mdi mdi-menu-down text-large"></div>
               Danh mục
             </v-btn>
           </template>
@@ -75,9 +66,9 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn color="green" text x-large> Sản phẩm </v-btn>
-        <v-btn color="green" text x-large> Tin tức </v-btn>
-        <v-btn color="green" text x-large> Liên hệ </v-btn>
+        <v-btn color="green darken-2" text x-large> Sản phẩm </v-btn>
+        <v-btn color="green darken-2" text x-large> Tin tức </v-btn>
+        <v-btn color="green darken-2" text x-large> Liên hệ </v-btn>
       </v-row>
       <v-spacer />
     </v-app-bar>
@@ -181,19 +172,19 @@
           <div class="text-subtitle-2">PHƯƠNG THỨC THANH TOÁN</div>
           <v-row>
             <v-col cols="2">
-              <img src="~/assets/img/pay-5.png" />
+              <img src="~/assets/img/footer/pay-5.png" />
             </v-col>
             <v-col cols="2">
-              <img src="~/assets/img/pay-1.png" />
+              <img src="~/assets/img/footer/pay-1.png" />
             </v-col>
             <v-col cols="2">
-              <img src="~/assets/img/pay-2.png" />
+              <img src="~/assets/img/footer/pay-2.png" />
             </v-col>
             <v-col cols="2">
-              <img src="~/assets/img/pay-3.png" />
+              <img src="~/assets/img/footer/pay-3.png" />
             </v-col>
             <v-col cols="2">
-              <img src="~/assets/img/pay-4.png" />
+              <img src="~/assets/img/footer/pay-4.png" />
             </v-col>
           </v-row>
         </v-col>
@@ -201,10 +192,10 @@
           <div class="text-subtitle-2">DỊCH VỤ GIAO HÀNG</div>
           <v-row>
             <v-col cols="6">
-              <img src="~/assets/img/logo-giao-hang-nhanh.png" />
+              <img src="~/assets/img/footer/logo-giao-hang-nhanh.png" />
             </v-col>
             <v-col cols="6">
-              <img src="~/assets/img/logo-vietnam-post.png" />
+              <img src="~/assets/img/footer/logo-vietnam-post.png" />
             </v-col>
           </v-row>
         </v-col>
@@ -264,68 +255,6 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [
-        {
-          text: 'Chính sách bảo mật',
-        },
-        {
-          text: 'Chính sách đại lý',
-        },
-        {
-          text: 'Chính sách đổi trả',
-        },
-        {
-          text: 'Chính sách vận chuyển',
-        },
-        {
-          text: 'Đặt hàng thành công',
-        },
-        {
-          text: 'Điều khoản và điều kiện',
-        },
-        {
-          text: 'Giỏ hàng',
-        },
-        {
-          text: 'Giới thiệu',
-        },
-        {
-          text: 'Hệ thống đại lý',
-        },
-        {
-          text: 'Hướng dẫn mua hàng',
-        },
-        {
-          text: 'Hướng dẫn thanh toán',
-        },
-        {
-          text: 'Liên Hệ',
-        },
-        {
-          text: 'Sản phẩm',
-        },
-        {
-          text: 'Tài khoản',
-        },
-        {
-          text: 'Tầm nhìn chiến lược',
-        },
-        {
-          text: 'Thanh toán',
-        },
-        {
-          text: 'Theo dõi đơn hàng',
-        },
-        {
-          text: 'Hệ thống đại lý',
-        },
-        {
-          text: 'Triết lý kinh doanh',
-        },
-        {
-          text: 'Tuyển đại lý - CTV',
-        },
-      ],
       productCategories: [
         { text: 'Trà Mix Vị', to: '/' },
         { text: 'Sản phẩm trà hoa – Quả khô', to: '/' },
@@ -388,11 +317,19 @@ export default {
       miniVariant: false,
     }
   },
+  computed: {
+    products() {
+      return this.$store.state.products
+    },
+  },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
   },
   unmounted() {
     window.removeEventListener('scroll', this.handleScroll)
+  },
+  mounted() {
+    this.$store.dispatch('products/fetchProducts')
   },
   methods: {
     handleScroll() {
@@ -521,6 +458,7 @@ export default {
     border-radius: 30px;
     text-decoration: none;
     padding: 5px 12px;
+    opacity: 0.5;
     &:hover {
       opacity: 0.8;
     }
@@ -535,6 +473,7 @@ export default {
     border-radius: 30px;
     text-decoration: none;
     padding: 5px 12px;
+    opacity: 0.5;
     &:hover {
       opacity: 0.8;
     }
@@ -551,8 +490,10 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .app-logo {
-    width: 175px;
+    width: 140px;
     height: auto;
+    margin-left: -35px;
+    margin-right: 20px;
   }
   .top-header {
     > .search {
@@ -574,6 +515,9 @@ export default {
   }
 }
 @media only screen and (max-width: 768px) {
+  .nav-bar.main-container {
+    padding: 0 2%;
+  }
   .app-logo {
     width: 120px;
     height: auto;
@@ -590,7 +534,7 @@ export default {
     }
   }
   .app-link {
-    gap: 6px;
+    margin-left: -12px;
     > .v-btn {
       font-size: 12px;
       width: 20%;

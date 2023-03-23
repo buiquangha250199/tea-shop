@@ -1,3 +1,5 @@
+import { formatNumber } from '~/helper/common'
+
 export const state = () => ({
   products: [],
 })
@@ -16,8 +18,15 @@ export const actions = {
     const { results } = await this.$axios.$get(url)
 
     // update state by committing a mutation
-    commit('setProducts', results)
 
-    return results
+    const productFormatted = results.map((product) => {
+      return {
+        ...product,
+        price: formatNumber(product.price),
+      }
+    })
+
+    commit('setProducts', productFormatted)
+    return productFormatted
   },
 }

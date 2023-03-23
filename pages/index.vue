@@ -101,7 +101,7 @@
       </v-row>
       <v-row style="text-align: center">
         <v-col
-          ><v-btn color="green darken-2" dark large>
+          ><v-btn to="/danh-muc/5" color="green darken-2" dark large>
             Xem tất cả <span class="mdi mdi-arrow-right-thick"></span></v-btn
         ></v-col>
       </v-row>
@@ -128,7 +128,7 @@
       </v-row>
       <v-row style="text-align: center">
         <v-col
-          ><v-btn color="green darken-2" dark large>
+          ><v-btn to="/danh-muc/3" color="green darken-2" dark large>
             Xem tất cả <span class="mdi mdi-arrow-right-thick"></span></v-btn
         ></v-col>
       </v-row>
@@ -143,20 +143,6 @@ export default {
   data() {
     return {
       images: ['img-1.png', 'img-2.png', 'img-3.png', 'img-4.png'],
-      slider: [
-        'red',
-        'green',
-        'orange',
-        'blue',
-        'pink',
-        'purple',
-        'indigo',
-        'cyan',
-        'deep-purple',
-        'light-green',
-        'deep-orange',
-        'blue-grey',
-      ],
     }
   },
   computed: {
@@ -316,48 +302,6 @@ export default {
   max-height: 500px;
   width: auto;
   object-fit: cover;
-}
-.product-container {
-  > .title {
-    border-bottom: 1px solid #f34407;
-    margin-right: 20px;
-  }
-  > .title > .text {
-    background: #f34407;
-    width: fit-content;
-    padding: 12px 15px;
-    color: #fff;
-    cursor: pointer;
-    border-top-right-radius: 36px;
-    border-bottom-right-radius: 36px;
-  }
-  .card-item {
-    &:hover {
-      transform: scale(1.05);
-      transition: all 0.5s;
-    }
-    .title {
-      text-align: center;
-      color: #4e342e;
-      display: block;
-      font-size: 15px !important;
-    }
-    .subtitle {
-      color: #ff0000;
-      display: block;
-      text-align: center;
-      font-weight: 900;
-      font-size: 16px !important;
-    }
-  }
-}
-.sub-product {
-  .title {
-    border-bottom-color: #388e3c;
-  }
-  .title > .text {
-    background-color: #388e3c;
-  }
 }
 @media only screen and(min-width: 768px) and (max-width: 1025px) {
   .sp {

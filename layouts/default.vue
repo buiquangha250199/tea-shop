@@ -6,7 +6,11 @@
       :fixed="fixed"
       transition="scroll-y-transition"
     >
-      <img class="app-logo" src="~/assets/img/logo/app-logo.png" />
+      <img
+        class="app-logo"
+        src="~/assets/img/logo/app-logo.png"
+        @click="$router.push('/')"
+      />
       <div class="search">
         <v-text-field
           label="Tìm sản phẩm..."
@@ -55,20 +59,26 @@
           </template>
           <v-list>
             <v-list-item
-              v-for="(item, index) in productCategories"
+              v-for="(item, index) in categories"
               :key="index"
-              :to="item.to"
+              :to="`/danh-muc/${item.id}`"
             >
               <v-list-item-title
                 ><span class="mdi mdi-menu-right"></span
-                >{{ item.text }}</v-list-item-title
+                >{{ item.name }}</v-list-item-title
               >
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn color="green darken-2" text x-large> Sản phẩm </v-btn>
-        <v-btn color="green darken-2" text x-large> Tin tức </v-btn>
-        <v-btn color="green darken-2" text x-large> Liên hệ </v-btn>
+        <v-btn color="green darken-2" to="/san-pham/" text x-large>
+          Sản phẩm
+        </v-btn>
+        <v-btn color="green darken-2" to="/tin-tuc/" text x-large>
+          Tin tức
+        </v-btn>
+        <v-btn color="green darken-2" to="/lien-he/" text x-large>
+          Liên hệ
+        </v-btn>
       </v-row>
       <v-spacer />
     </v-app-bar>
@@ -255,13 +265,6 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      productCategories: [
-        { text: 'Trà Mix Vị', to: '/' },
-        { text: 'Sản phẩm trà hoa – Quả khô', to: '/' },
-        { text: 'Trà thảo dược', to: '/' },
-        { text: 'Thực phẩm dinh dưỡng', to: '/' },
-        { text: 'Trà Trị Liệu', to: '/' },
-      ],
       aboutList: [
         {
           text: 'Giới thiệu',
@@ -321,6 +324,9 @@ export default {
     products() {
       return this.$store.state.products
     },
+    categories() {
+      return this.$store.state.categories.categories
+    },
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -330,6 +336,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('products/fetchProducts')
+    this.$store.dispatch('categories/fetchCategories')
   },
   methods: {
     handleScroll() {
@@ -494,6 +501,7 @@ export default {
     height: auto;
     margin-left: -35px;
     margin-right: 20px;
+    cursor: pointer;
   }
   .top-header {
     > .search {

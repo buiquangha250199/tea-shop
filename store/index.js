@@ -1,20 +1,8 @@
-export const state = () => ({
-  products: [],
-})
+export const state = () => ({})
 
 export const getters = {
   getProducts(state) {
-    return state.counter
+    return state.products
   },
 }
 
-export const actions = {
-  async fetchProducts({ state }, searchParams) {
-    // make request
-    const { results } = await this.$axios.$get(
-      `${this.$config.baseUrl}products?search=${searchParams}`
-    )
-    state.products = results
-    return results
-  },
-}

@@ -13,7 +13,7 @@ export const mutations = {
 export const actions = {
   async fetchProducts({ commit }, searchParams) {
     const url = searchParams
-      ? `${this.$config.baseUrl}products?search=${searchParams}`
+      ? `${this.$config.baseUrl}products/?search=${searchParams}`
       : `${this.$config.baseUrl}products/`
     const { results } = await this.$axios.$get(url)
 

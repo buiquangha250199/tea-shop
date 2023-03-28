@@ -220,10 +220,10 @@ export default {
       else return allTeaProducts
     },
     sub1Products() {
-      return getProductByType(this.products, 5).slice(0, 4)
+      return getProductByType(this.products, 1).slice(0, 4)
     },
     sub2Products() {
-      return getProductByType(this.products, 3).slice(0, 4)
+      return getProductByType(this.products, 2).slice(0, 4)
     },
   },
 }

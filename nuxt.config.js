@@ -3,7 +3,9 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  server: {
+    host: '0.0.0.0',
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - tea-shop',
@@ -50,7 +52,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl: 'http://54.255.46.159:8000/api/v1/',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

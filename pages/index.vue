@@ -101,7 +101,7 @@
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">{{ categories[4]?.name || 'Sản phẩm' }}</div>
+        <div class="text">{{ categories[1]?.name || 'Sản phẩm' }}</div>
       </div>
       <v-row>
         <v-col

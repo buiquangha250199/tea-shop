@@ -7,24 +7,16 @@
     </v-breadcrumbs>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">Sản phẩm</div>
+        <div class="text">Tin tức</div>
       </div>
       <v-row>
-        <v-col
-          v-for="(product, index) in products"
-          :key="index"
-          cols="6"
-          sm="3"
-        >
+        <v-col v-for="(item, index) in news" :key="index" cols="6" sm="3">
           <v-card
             class="card-item"
-            @click="$router.push(`/san-pham/${product?.id}`)"
+            @click="$router.push(`/tin-tuc/${item?.id}`)"
           >
-            <v-img :src="product.thumbnail" cover></v-img>
-            <v-card-title class="title"> {{ product.name }}</v-card-title>
-            <v-card-subtitle class="subtitle">
-              {{ product.price }}₫ /{{ product.unit }}
-            </v-card-subtitle>
+            <v-img :src="item.thumbnail" cover></v-img>
+            <v-card-title class="title"> {{ item.title }}</v-card-title>
           </v-card>
         </v-col>
       </v-row>
@@ -41,15 +33,15 @@ export default {
         href: '/',
       },
       {
-        text: 'Sản phẩm',
+        text: 'Tin tức',
         disabled: true,
         href: 'breadcrumbs_link_1',
       },
     ],
   }),
   computed: {
-    products() {
-      return this.$store.state.products.products
+    news() {
+      return this.$store.state.news.news
     },
   },
 }

@@ -1,5 +1,17 @@
 <template>
-  <v-row justify="center" class="mb-8">
+  <v-row justify="center" class="mb-8 mt-2">
+    <v-col v-if="categories?.length" cols="12" sm="3" class="pc">
+      <div class="text-h5 mb-4">Danh mục sản phẩm</div>
+      <nuxt-link
+        v-for="category in categories"
+        :key="category.id"
+        class="category-item link"
+        :to="`danh-muc/${category.id}`"
+      >
+        <span class="mdi mdi-arrow-right-bold-circle mr-2 warning--text"></span
+        >{{ category.name }}
+      </nuxt-link>
+    </v-col>
     <v-col cols="12" sm="9" class="mb-8">
       <v-carousel
         cycle
@@ -24,7 +36,7 @@
     </v-col>
     <v-col cols="12" class="product-container mb-8">
       <div class="title mb-6">
-        <div class="text">Tra Mix Vi</div>
+        <div class="text">{{ categories[0]?.name || 'Sản phẩm' }}</div>
       </div>
       <v-carousel
         cycle
@@ -53,7 +65,15 @@
                         justify="center"
                       >
                         <div class="display-3">
-                          <v-card class="card-item" width="270">
+                          <v-card
+                            class="card-item"
+                            width="270"
+                            @click="
+                              $router.push(
+                                `/san-pham/${teaProducts[+index + i].id}`
+                              )
+                            "
+                          >
                             <v-img
                               :src="teaProducts[+index + i].thumbnail"
                               height="200px"
@@ -81,16 +101,20 @@
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">Trà Trị Liệu</div>
+        <div class="text">{{ categories[4]?.name || 'Sản phẩm' }}</div>
       </div>
       <v-row>
         <v-col
-          v-for="(product, index) in tea2Products"
+          v-for="(product, index) in sub1Products"
           :key="index"
           cols="6"
           sm="3"
         >
-          <v-card class="card-item" width="250">
+          <v-card
+            class="card-item"
+            width="250"
+            @click="$router.push(`/san-pham/${product.id}`)"
+          >
             <v-img :src="product.thumbnail" height="200px" cover></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
@@ -108,16 +132,20 @@
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">Trà thảo dược</div>
+        <div class="text">{{ categories[2]?.name || 'Sản phẩm' }}</div>
       </div>
       <v-row>
         <v-col
-          v-for="(product, index) in tea2Products"
+          v-for="(product, index) in sub2Products"
           :key="index"
           cols="6"
           sm="3"
         >
-          <v-card class="card-item" width="250">
+          <v-card
+            class="card-item"
+            width="250"
+            @click="$router.push(`/san-pham/${product.id}`)"
+          >
             <v-img :src="product.thumbnail" height="200px" cover></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
@@ -133,11 +161,13 @@
         ></v-col>
       </v-row>
     </v-col>
-    <home-news-section />
+    <home-news-section :news="news" />
   </v-row>
 </template>
 
 <script>
+import { getProductByType } from '~/helper/common'
+
 export default {
   name: 'IndexPage',
   data() {
@@ -151,6 +181,7 @@ export default {
         return 4
       }
       if (this.$vuetify.breakpoint.lg) {
+        if (this.teaProducts.length <= 6) return 3
         return 4
       }
       if (this.$vuetify.breakpoint.md) {
@@ -170,131 +201,41 @@ export default {
       }
       return 1
     },
-    teaProducts() {
-      // return this.$store.state.products
-      return [
-        {
-          name: 'Trà tuyết dưỡng nhan',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2020/12/x-300x237.png',
-          price: '32000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà hoa quả đậu biếc',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-hoa-qua-dau-biec-3-300x300.png',
-          price: '12000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà Cam Quế',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-cam-que-300x300.jpg',
-          price: '15000',
-          unit: 'gói',
-        },
-        {
-          name: 'Kim quất hồng đào',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/kim-quat-e1676955530405-300x300.jpg',
-          price: '18000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà tuyết dưỡng nhan',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2020/12/x-300x237.png',
-          price: '32000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà Cam Quế',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-cam-que-300x300.jpg',
-          price: '15000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà hoa quả đậu biếc',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-hoa-qua-dau-biec-3-300x300.png',
-          price: '12000',
-          unit: 'gói',
-        },
-        {
-          name: 'Kim quất hồng đào',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/kim-quat-e1676955530405-300x300.jpg',
-          price: '18000',
-          unit: 'gói',
-        },
-        {
-          name: 'Kim quất hồng đào',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/kim-quat-e1676955530405-300x300.jpg',
-          price: '18000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà tuyết dưỡng nhan',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2020/12/x-300x237.png',
-          price: '32000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà Cam Quế',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-cam-que-300x300.jpg',
-          price: '15000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà hoa quả đậu biếc',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-hoa-qua-dau-biec-3-300x300.png',
-          price: '12000',
-          unit: 'gói',
-        },
-      ]
+    categories() {
+      return this.$store.state.categories.categories
     },
-    tea2Products() {
-      return [
-        {
-          name: 'Trà tuyết dưỡng nhan',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2020/12/x-300x237.png',
-          price: '32000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà hoa quả đậu biếc',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-hoa-qua-dau-biec-3-300x300.png',
-          price: '12000',
-          unit: 'gói',
-        },
-        {
-          name: 'Trà Cam Quế',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-cam-que-300x300.jpg',
-          price: '15000',
-          unit: 'gói',
-        },
-        {
-          name: 'Kim quất hồng đào',
-          thumbnail:
-            'https://trahoanhamoc.com/wp-content/uploads/2023/02/kim-quat-e1676955530405-300x300.jpg',
-          price: '18000',
-          unit: 'gói',
-        },
-      ]
+    products() {
+      return this.$store.state.products.products
+    },
+    news() {
+      return this.$store.state.news.news
+    },
+    teaProducts() {
+      const allTeaProducts = this.products.length
+        ? this.products.filter((product) => product.category.id === 1)
+        : []
+      if (allTeaProducts.length > 12) return allTeaProducts.slice(0, 12)
+      else if (allTeaProducts.length < 12 && allTeaProducts.length >= 8)
+        return allTeaProducts.slice(0, 8)
+      else return allTeaProducts
+    },
+    sub1Products() {
+      return getProductByType(this.products, 5).slice(0, 4)
+    },
+    sub2Products() {
+      return getProductByType(this.products, 3).slice(0, 4)
     },
   },
 }
 </script>
 <style lang="scss" scoped>
+.category-item {
+  border-bottom: 1px solid #0000001a;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  display: block;
+  color: $text-color;
+}
 .v-carousel__item {
   height: auto !important;
 }

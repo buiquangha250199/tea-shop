@@ -16,7 +16,10 @@
           cols="6"
           sm="3"
         >
-          <v-card class="card-item">
+          <v-card
+            class="card-item"
+            @click="$router.push(`/san-pham/${product?.id}`)"
+          >
             <v-img :src="product.thumbnail" cover></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">

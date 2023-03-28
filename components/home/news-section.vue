@@ -6,57 +6,26 @@
       </nuxt-link>
       <v-row>
         <v-col cols="12" md="6">
-          <div class="content elevation-1">
-            <nuxt-link class="link" to="/"
-              >4 Công thức pha trà táo đỏ thơm ngon, bổ dưỡng, dễ làm</nuxt-link
-            >
-          </div>
+          <v-card
+            v-if="news.length > 0"
+            class="card-item"
+            @click="$router.push(`/tin-tuc/${news[0]?.id}`)"
+          >
+            <v-img
+              max-height="250px"
+              class="news-img"
+              :src="news[0].thumbnail"
+              cover
+            ></v-img>
+            <v-card-title class="title"> {{ news[0].title }}</v-card-title>
+          </v-card>
         </v-col>
         <v-col cols="12" md="6">
-          <div class="news-item">
-            <img
-              src="https://trahoanhamoc.com/wp-content/uploads/2023/03/tao-do.jpg"
-              width="120"
-            />
-            <nuxt-link to="/tin-tuc/1" class="link block"
-              >Lý do táo đỏ là nguyên liệu chính của Trà Hoa Nhà Mộc</nuxt-link
-            >
-          </div>
-          <div class="news-item">
-            <img
-              src="https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-cam-que-300x200.jpg"
-              width="120"
-            />
-            <nuxt-link to="/tin-tuc/1" class="link block"
-              >Lợi ích không ngờ của trà hoa thảo mộc</nuxt-link
-            >
-          </div>
-          <div class="news-item">
-            <img
-              src="https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-thao-moc-say-lanh-300x200.jpg"
-              width="120"
-            />
-            <nuxt-link to="/tin-tuc/1" class="link block"
-              >Vì sao lựa chọn hoa quả sấy lạnh?</nuxt-link
-            >
-          </div>
-          <div class="news-item">
-            <img
-              src="https://trahoanhamoc.com/wp-content/uploads/2023/02/long-nhan-say-kho-thom-ngon-300x200.jpg"
-              width="120"
-            />
-            <nuxt-link to="/tin-tuc/1" class="link block"
-              >Long Nhãn – vị thuốc cho giấc ngủ</nuxt-link
-            >
-          </div>
-          <div class="news-item">
-            <img
-              src="	https://trahoanhamoc.com/wp-content/uploads/2023/02/tra-hoa-dau-biec-300x200.jpg"
-              width="120"
-            />
-            <nuxt-link to="/tin-tuc/1" class="link block"
-              >Hoa đậu biếc – loại thảo dược đa công dụng</nuxt-link
-            >
+          <div v-for="item in subNews" :key="item.id" class="news-item">
+            <img :src="`${item.thumbnail}`" width="80" />
+            <nuxt-link :to="`/tin-tuc/${item.id}`" class="link block">{{
+              item.title
+            }}</nuxt-link>
           </div>
         </v-col>
       </v-row>
@@ -81,10 +50,31 @@
     </v-col>
   </v-row>
 </template>
+<script>
+export default {
+  props: {
+    news: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  computed: {
+    subNews() {
+      return this.news.slice(1, 5)
+    },
+  },
+}
+</script>
 <style lang="scss" scoped>
+.news-img {
+  display: block;
+  margin: auto;
+}
 .title {
   border-bottom: 1px solid #2e7d32;
   display: block;
+  font-size: 15px !important;
+  word-break: break-word;
   &:hover {
     text-decoration: none;
   }

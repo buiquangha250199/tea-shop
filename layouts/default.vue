@@ -335,8 +335,9 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   mounted() {
-    this.$store.dispatch('products/fetchProducts')
+    this.$store.dispatch('products/fetchProducts', {})
     this.$store.dispatch('categories/fetchCategories')
+    this.$store.dispatch('news/fetchNews')
   },
   methods: {
     handleScroll() {

@@ -2,18 +2,22 @@ import { formatNumber } from '~/helper/common'
 
 export const state = () => ({
   products: [],
+  searchingProducts: [],
 })
 
 export const mutations = {
   setProducts(state, products) {
     state.products = products
   },
+  setSearchingProducts(state, products) {
+    state.searchingProducts = products
+  },
 }
 
 export const actions = {
   async fetchProducts(
     { commit },
-    { searchParams = '', page = 1, limit = 1000 }
+    { searchParams = '', page = 1, limit = 1000, isSave = true }
   ) {
     const url = searchParams
       ? `${this.$config.baseUrl}products/?search=${searchParams}&page=${page}&limit=${limit}`
@@ -26,10 +30,12 @@ export const actions = {
       return {
         ...product,
         price: formatNumber(product.price),
+        priceValue: product.price,
       }
     })
 
-    commit('setProducts', productFormatted)
+    if (isSave) commit('setProducts', productFormatted)
+    else commit('setSearchingProducts', productFormatted)
     return productFormatted
   },
 }

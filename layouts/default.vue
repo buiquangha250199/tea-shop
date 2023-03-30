@@ -13,6 +13,7 @@
       />
       <div class="search">
         <v-text-field
+          v-model="search"
           label="Tìm sản phẩm..."
           placeholder="Tìm sản phẩm..."
           large
@@ -20,8 +21,9 @@
           clearable
           hide-details="auto"
           class="input"
+          @keydown.enter="handleSearch"
         ></v-text-field>
-        <v-btn class="btn" color="green darken-2">
+        <v-btn class="btn" color="green darken-2" @click="handleSearch">
           <span class="mdi mdi-magnify"></span>
         </v-btn>
       </div>
@@ -42,12 +44,13 @@
       absolute
       app
     >
+      <v-spacer />
       <v-row align="center" class="app-link">
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn
               class="menubtn"
-              color="green darken-2"
+              color="#fff"
               text
               x-large
               v-bind="attrs"
@@ -70,20 +73,22 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn color="green darken-2" to="/san-pham/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/san-pham/" text x-large>
           Sản phẩm
         </v-btn>
-        <v-btn color="green darken-2" to="/tin-tuc/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/tin-tuc/" text x-large>
           Tin tức
         </v-btn>
-        <v-btn color="green darken-2" to="/lien-he/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/lien-he/" text x-large>
           Liên hệ
         </v-btn>
       </v-row>
       <v-spacer />
+      <v-spacer />
+      <v-spacer />
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container class="pb-8">
         <Nuxt />
       </v-container>
     </v-main>
@@ -318,6 +323,7 @@ export default {
         },
       ],
       miniVariant: false,
+      search: '',
     }
   },
   computed: {
@@ -350,6 +356,15 @@ export default {
         top: 0,
         behavior: 'smooth',
       })
+    },
+    async handleSearch() {
+      if (this.search !== '') {
+        await this.$store.dispatch('products/fetchProducts', {
+          isSave: false,
+          searchParams: this.search || '',
+        })
+        this.$router.push(`/tim-kiem/?search=${this.search}`)
+      }
     },
   },
 }
@@ -396,14 +411,22 @@ export default {
   }
 }
 .nav-bar {
-  top: 90px;
-  margin-top: 0;
+  top: 95px;
+  margin-top: 5px !important;
+  background-color: #388e3c !important;
+  color: #fff !important;
 }
 
 .app-link {
-  gap: 12px;
-  margin-left: 12px;
+  .v-btn {
+    margin-right: 5px;
+  }
 }
+
+.menubtn {
+  width: 30% !important;
+}
+
 .about-list {
   .item {
     min-height: 36px !important;
@@ -543,14 +566,19 @@ export default {
     }
   }
   .app-link {
-    margin-left: -12px;
-    > .v-btn {
-      font-size: 12px;
+    .v-btn:not(.v-btn--round).v-size--x-large {
       width: 20%;
+    }
+  }
+  .app-link {
+    .text-btn {
+      font-size: 12px;
+      width: 20% !important;
       min-width: unset;
     }
     > .menubtn {
       margin-right: 20px;
+      font-size: 12px;
     }
   }
   .layout-footer {

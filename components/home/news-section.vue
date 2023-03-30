@@ -5,14 +5,14 @@
         <div class="text">Tin tức</div>
       </nuxt-link>
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="4">
           <v-card
             v-if="news.length > 0"
             class="card-item"
             @click="$router.push(`/tin-tuc/${news[0]?.id}`)"
           >
             <v-img
-              max-height="250px"
+              max-height="200px"
               class="news-img"
               :src="news[0].thumbnail"
               cover
@@ -20,9 +20,14 @@
             <v-card-title class="title"> {{ news[0].title }}</v-card-title>
           </v-card>
         </v-col>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="8">
           <div v-for="item in subNews" :key="item.id" class="news-item">
-            <img :src="`${item.thumbnail}`" width="80" />
+            <img
+              :src="`${item.thumbnail}`"
+              width="120"
+              style="cursor: pointer"
+              @click="$router.push(`/tin-tuc/${item.id}`)"
+            />
             <nuxt-link :to="`/tin-tuc/${item.id}`" class="link block">{{
               item.title
             }}</nuxt-link>

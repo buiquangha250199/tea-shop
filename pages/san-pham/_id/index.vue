@@ -1,4 +1,3 @@
-// eslint-disable-next-line vue/no-v-html
 <template>
   <div>
     <v-row class="mb-8">
@@ -19,60 +18,27 @@
             <div class="mt-4 mb-4 text-subtitle-1">
               {{ productDetail?.description }}
             </div>
-            <v-radio-group class="options">
+            <v-radio-group v-model="quantity" class="options">
               <template #label>
-                <div>Hãy nhập số lượng <strong>sản phẩm:</strong></div>
+                <div>Hãy chọn <strong>loại sản phẩm:</strong></div>
               </template>
-              <div>
-                <v-text-field
-                  v-model.number="amount"
-                  :error-messages="amountErrors"
-                  type="number"
-                  class="mb-n3"
-                  label="Hãy nhập số lượng"
-                  placeholder="Hãy nhập số lượng"
-                  outlined
-                  @blur="$v.amount.$touch()"
-                  @input="$v.amount.$touch()"
-                ></v-text-field>
-              </div>
-              <div>
-                <v-chip
-                  class="mr-2 price-chip"
-                  color="green"
-                  text-color="white"
-                >
-                  1
-                </v-chip>
-                <v-chip
-                  class="ma-2 price-chip"
-                  color="green"
-                  text-color="white"
-                >
-                  5
-                </v-chip>
-                <v-chip
-                  class="ma-2 price-chip"
-                  color="green"
-                  text-color="white"
-                >
-                  10
-                </v-chip>
-                <v-chip
-                  class="ma-2 price-chip"
-                  color="green"
-                  text-color="white"
-                >
-                  20
-                </v-chip>
-                <v-chip
-                  class="ma-2 price-chip"
-                  color="green"
-                  text-color="white"
-                >
-                  100
-                </v-chip>
-              </div>
+              <v-radio
+                v-for="option in productDetail?.options"
+                :key="option.quantity"
+                :value="option.quantity"
+              >
+                <template #label>
+                  <div>
+                    <strong class="success--text"
+                      >Set {{ option.quantity }}
+                      {{ productDetail.unit }}</strong
+                    >
+                    <strong class="error--text" style="font-size: 13px">
+                      - Giá {{ formatNumber(option.price) }}đ
+                    </strong>
+                  </div>
+                </template>
+              </v-radio>
             </v-radio-group>
             <div class="mt-4 mb-4 text-subtitle-1 text-center">
               <span class="mdi mdi-eye-check"></span>
@@ -81,24 +47,109 @@
             </div>
             <div class="mt-4 mb-4 text-subtitle-1 text-center">
               <div class="my-2">
-                <v-btn color="warning" dark x-large width="200px">
+                <v-btn
+                  color="warning"
+                  dark
+                  x-large
+                  width="200px"
+                  @click="dialog = true"
+                >
                   Mua ngay
                 </v-btn>
               </div>
             </div>
-            <div class="mt-4 mb-4 flex-center">
+            <div class="mt-4 mb-8 flex-center">
               <v-text-field
+                v-model="contactTel"
+                :error-messages="contactTelErrors"
                 label="Nhập số điện thoại để được tư vấn miễn phí..."
                 placeholder="Nhập số điện thoại để được tư vấn miễn phí..."
                 large
                 solo
                 clearable
-                hide-details="auto"
+                hide-details
                 class="input elevation-0"
+                @blur="$v.contactTel.$touch()"
+                @input="$v.contactTel.$touch()"
               ></v-text-field>
-              <v-btn class="btn" height="50px" large color="#C62828">
+              <v-btn
+                class="btn"
+                height="50px"
+                large
+                color="#C62828"
+                :loading="loadingBtn"
+                @click="sendContactTel"
+              >
                 Gửi
               </v-btn>
+            </div>
+            <div class="mt-4 mb-8 flex-center">
+              Gọi
+              <a
+                class="pl-2 pr-2"
+                href="tel:094.881.63.36"
+                style="color: #c62828"
+                ><strong>094.881.63.36</strong></a
+              >
+              để được tư vấn và mua hàng
+            </div>
+            <div class="mt-4 mb-4">
+              <v-card title="Card title" variant="outlined">
+                <v-card-item>
+                  <v-card-title
+                    style="
+                      background-color: #388e3c;
+                      color: #fff;
+                      font-size: 18px;
+                    "
+                    >CAM KẾT NGUỒN GỐC 100% TỪ THIÊN NHIÊN</v-card-title
+                  >
+                  <v-list lines="one">
+                    <v-list-item class="primary--text mb-n3"
+                      ><span
+                        class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
+                      ></span>
+                      Chỉ phải
+                      <strong class="ml-1">
+                        thanh toán sau khi nhận hàng</strong
+                      ></v-list-item
+                    >
+                    <v-list-item class="primary--text mb-n3"
+                      ><strong class="mr-1"
+                        ><span
+                          class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
+                        ></span
+                        >Được kiểm tra sản phẩm</strong
+                      >
+                      trước khi nhận</v-list-item
+                    >
+                    <v-list-item class="primary--text mb-n3"
+                      ><span
+                        class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
+                      ></span>
+                      Sản phẩm có nguồn gốc
+                      <strong class="ml-1"
+                        >100% từ thiên nhiên</strong
+                      ></v-list-item
+                    >
+                    <v-list-item class="primary--text mb-n3"
+                      ><strong class="mr-1"
+                        ><span
+                          class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
+                        ></span
+                        >Không chất bảo quản</strong
+                      >
+                      – Chất tạo màu – Hương liệu</v-list-item
+                    >
+                    <v-list-item class="primary--text"
+                      ><span
+                        class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
+                      ></span>
+                      Chỉ phải thanh toán sau khi nhận hàng</v-list-item
+                    >
+                  </v-list>
+                </v-card-item>
+              </v-card>
             </div>
           </v-col>
         </v-row>
@@ -124,12 +175,105 @@
           </v-card-subtitle>
         </v-card>
       </v-col>
+      <v-row justify="center">
+        <v-dialog v-model="dialog" max-width="640">
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">{{ productDetail?.name }}</span>
+            </v-card-title>
+            <v-card-text class="mb-n4">
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="name"
+                      outlined
+                      :error-messages="getErrors('name')"
+                      label="Tên của bạn"
+                      hide-details
+                      required
+                      @blur="$v.name.$touch()"
+                      @input="$v.name.$touch()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="tel"
+                      :error-messages="getErrors('tel')"
+                      outlined
+                      label="Số điện thoại"
+                      hide-details
+                      required
+                      @blur="$v.tel.$touch()"
+                      @input="$v.tel.$touch()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model.number="quantity"
+                      :error-messages="amountErrors"
+                      outlined
+                      label="Số lượng"
+                      hide-details
+                      required
+                      @blur="$v.quantity.$touch()"
+                      @input="$v.quantity.$touch()"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" class="mb-n4">
+                    <v-text-field
+                      v-model="address"
+                      :error-messages="getErrors('address')"
+                      outlined
+                      label="Địa chỉ giao hàng"
+                      hide-details
+                      required
+                      @blur="$v.address.$touch()"
+                      @input="$v.address.$touch()"
+                    ></v-text-field>
+                    <div style="font-size: 11px">
+                      Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố
+                    </div>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-textarea
+                      outlined
+                      hide-details
+                      label="Vui lòng cho biết yêu cầu khác (nếu có)"
+                    ></v-textarea>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-col class="text-center"
+              ><v-btn
+                class="text-none mb-4"
+                color="primary"
+                x-large
+                variant="flat"
+                @click="submit"
+              >
+                Đặt hàng ngay
+              </v-btn></v-col
+            >
+          </v-card>
+        </v-dialog>
+      </v-row>
+      <v-snackbar
+        v-model="snackbar"
+        :top="true"
+        :timeout="3000"
+        color="success"
+        variant="outlined"
+      >
+        <strong> {{ messageSnackbar }} </strong>
+      </v-snackbar>
     </v-row>
   </div>
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
-import { getTwoRandomProducts } from '~/helper/common'
+import { formatNumber, getTwoRandomProducts } from '~/helper/common'
 const { required, between, integer } = require('vuelidate/lib/validators')
 
 export default {
@@ -137,32 +281,61 @@ export default {
   data() {
     return {
       amount: 10,
-      amountRules: [
-        (v) => !!v || 'Đây là trường bắt buộc',
-        (v) => Number(v) === v || 'Hãy nhập số',
-      ],
+      name: null,
+      contactTel: '',
+      tel: null,
+      address: null,
+      description: '',
+      dialog: false,
+      loading: false,
+      snackbar: false,
+      loadingBtn: false,
+      messageSnackbar: '',
+      quantity: 1,
     }
   },
   validations: {
-    amount: {
+    quantity: {
       required,
       integer,
       between: between(1, 100000),
+    },
+    contactTel: {
+      required,
+    },
+    name: {
+      required,
+    },
+    tel: {
+      required,
+    },
+    address: {
+      required,
     },
   },
   computed: {
     amountErrors() {
       const errors = []
-      if (!this.$v.amount.$dirty) return errors
-      !this.$v.amount.integer &&
+      if (!this.$v.quantity.$dirty) return errors
+      !this.$v.quantity.integer &&
         errors.push('Vui lòng nhập giá trị số nguyên > 0')
-      !this.$v.amount.required && errors.push('Vui lòng nhập giá trị')
+      !this.$v.quantity.required && errors.push('Vui lòng nhập giá trị')
+      return errors
+    },
+    contactTelErrors() {
+      const errors = []
+      if (!this.$v.contactTel.$dirty) return errors
+      !this.$v.contactTel.required && errors.push('Vui lòng nhập giá trị')
+
       return errors
     },
     productDetail() {
       return this.products.find(
         (item) => item.id === Number(this.$route.params.id)
       )
+    },
+    defaultQuantityOption() {
+      return this.productDetail?.option[0]?.quantity || 10
     },
     products() {
       return this.$store.state.products.products
@@ -193,6 +366,56 @@ export default {
       return getTwoRandomProducts(this.products)
     },
   },
+  mounted() {
+    if (this.defaultQuantityOption) this.quantity = this.defaultQuantityOption
+  },
+  methods: {
+    formatNumber,
+    getErrors(field) {
+      const errors = []
+      if (!this.$v[field].$dirty) return errors
+      if (!this.$v[field].required) errors.push('Vui lòng nhập giá trị')
+      return errors
+    },
+    async submit() {
+      const body = {
+        name: this.name,
+        address: this.address,
+        phone_number: this.tel,
+        quantity: this.quantity,
+        price: this.productDetail.priceValue,
+        product: this.productDetail.id,
+      }
+      const order = await this.$axios.$post(
+        `${this.$config.baseUrl}orders`,
+        body
+      )
+      if (order) {
+        this.messageSnackbar = 'Đặt hàng thành công!'
+        this.snackbar = true
+        this.dialog = false
+      }
+    },
+    async sendContactTel() {
+      if (!this.contactTel) return
+      this.loadingBtn = true
+      const body = {
+        phone_number: this.contactTel,
+      }
+
+      const customer = await this.$axios.$post(
+        `${this.$config.baseUrl}customers`,
+        body
+      )
+      if (customer) {
+        this.messageSnackbar =
+          'Yêu cầu thành công! \nChúng tôi sẽ liên hệ trong thời gian sớm nhất.'
+        this.loadingBtn = false
+        this.snackbar = true
+        this.contactTel = ''
+      }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -211,7 +434,7 @@ export default {
   padding: 10px;
   background: floralwhite;
 }
-.v-card {
+.product-container .v-card {
   width: 80% !important;
 }
 .flex-center {

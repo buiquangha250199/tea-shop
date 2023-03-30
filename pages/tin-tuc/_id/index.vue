@@ -7,13 +7,14 @@
       </template>
     </v-breadcrumbs>
     <v-row>
+      <div class="text-h4 ml-3 mt-4 mb-4">{{ newsDetail?.title }}</div>
       <v-col cols="12" md="9">
         <v-img
           max-height="300px"
           max-width="450px"
           :src="newsDetail?.thumbnail"
           cover
-          class="mb-4"
+          class="mb-6"
         ></v-img>
         <div class="mb-8 pr-8" v-html="newsDetail?.body"></div>
       </v-col>

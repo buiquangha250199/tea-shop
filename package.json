@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "HOST=127.0.0.1 nuxt",
+    "dev": "nuxt",
     "build": "nuxt generate",
-    "start": "HOST=127.0.0.1 nuxt start",
+    "start": "HOST=54.255.46.159 nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",

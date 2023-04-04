@@ -4,8 +4,8 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   server: {
-    // host: process.env.IP_ADDRESS || '54.255.46.159',
-    host: '0.0.0.0',
+    host: process.env.IP_ADDRESS || '54.255.46.159',
+    // host: '0.0.0.0',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {

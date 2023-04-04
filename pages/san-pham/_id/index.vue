@@ -23,16 +23,13 @@
                 <div>Hãy chọn <strong>loại sản phẩm:</strong></div>
               </template>
               <v-radio
-                v-for="option in productDetail?.options"
-                :key="option.quantity"
-                :value="option.quantity"
+                v-for="(option, index) in productDetail?.options"
+                :key="index"
+                :value="option.unit"
               >
                 <template #label>
                   <div>
-                    <strong class="success--text"
-                      >Set {{ option.quantity }}
-                      {{ productDetail.unit }}</strong
-                    >
+                    <strong class="success--text">Set {{ option.unit }}</strong>
                     <strong class="error--text" style="font-size: 13px">
                       - Giá {{ formatNumber(option.price) }}đ
                     </strong>
@@ -176,7 +173,7 @@
         </v-card>
       </v-col>
       <v-row justify="center">
-        <v-dialog v-model="dialog" max-width="640">
+        <v-dialog v-model="dialog" max-width="560">
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ productDetail?.name }}</span>
@@ -191,6 +188,8 @@
                       :error-messages="getErrors('name')"
                       label="Tên của bạn"
                       hide-details
+                      class="formfield"
+                      height="40px"
                       required
                       @blur="$v.name.$touch()"
                       @input="$v.name.$touch()"
@@ -334,9 +333,6 @@ export default {
         (item) => item.id === Number(this.$route.params.id)
       )
     },
-    defaultQuantityOption() {
-      return this.productDetail?.option[0]?.quantity || 10
-    },
     products() {
       return this.$store.state.products.products
     },
@@ -365,9 +361,6 @@ export default {
     randomProducts() {
       return getTwoRandomProducts(this.products)
     },
-  },
-  mounted() {
-    if (this.defaultQuantityOption) this.quantity = this.defaultQuantityOption
   },
   methods: {
     formatNumber,
@@ -432,7 +425,6 @@ export default {
   border: 1px solid;
   border-radius: 5px;
   padding: 10px;
-  background: floralwhite;
 }
 .product-container .v-card {
   width: 80% !important;

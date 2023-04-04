@@ -52,7 +52,7 @@
               class="menubtn"
               color="#fff"
               text
-              x-large
+              large
               v-bind="attrs"
               v-on="on"
             >
@@ -73,13 +73,13 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="text-btn" color="#fff" to="/san-pham/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/san-pham/" text large>
           Sản phẩm
         </v-btn>
-        <v-btn class="text-btn" color="#fff" to="/tin-tuc/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/tin-tuc/" text large>
           Tin tức
         </v-btn>
-        <v-btn class="text-btn" color="#fff" to="/lien-he/" text x-large>
+        <v-btn class="text-btn" color="#fff" to="/lien-he/" text large>
           Liên hệ
         </v-btn>
       </v-row>
@@ -424,7 +424,7 @@ export default {
 }
 
 .menubtn {
-  width: 30% !important;
+  width: 25% !important;
 }
 
 .about-list {

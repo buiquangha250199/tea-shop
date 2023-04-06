@@ -81,11 +81,11 @@
               </v-btn>
             </div>
             <div class="mt-4 mb-8 flex-center">
-              Gọi
+              <div style="min-width: 25px">Gọi</div>
               <a
                 class="pl-2 pr-2"
                 href="tel:094.881.63.36"
-                style="color: #c62828"
+                style="color: #c62828; display: block"
                 ><strong>094.881.63.36</strong></a
               >
               để được tư vấn và mua hàng
@@ -98,6 +98,7 @@
                       background-color: #388e3c;
                       color: #fff;
                       font-size: 18px;
+                      word-break: break-word;
                     "
                     >CAM KẾT NGUỒN GỐC 100% TỪ THIÊN NHIÊN</v-card-title
                   >
@@ -135,19 +136,28 @@
                           class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
                         ></span
                         >Không chất bảo quản</strong
-                      >
-                      – Chất tạo màu – Hương liệu</v-list-item
+                      >– Chất tạo màu</v-list-item
                     >
                     <v-list-item class="primary--text"
                       ><span
                         class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
                       ></span>
-                      Chỉ phải thanh toán sau khi nhận hàng</v-list-item
+                      Chỉ phải thanh toán
+                      <strong class="ml-1">
+                        sau khi nhận hàng</strong
+                      ></v-list-item
                     >
                   </v-list>
                 </v-card-item>
               </v-card>
             </div>
+          </v-col>
+          <v-col v-if="productDetail?.detail" cols="12" class="mt-n4">
+            <div
+              class="mb-8 pa-6"
+              style="background-color: #fff"
+              v-html="productDetail?.detail"
+            ></div>
           </v-col>
         </v-row>
       </v-col>
@@ -208,16 +218,19 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field
+                    <v-select
                       v-model.number="quantity"
+                      label="Số lượng"
+                      :items="
+                        productDetail?.options.map((option) => option.price)
+                      "
                       :error-messages="amountErrors"
                       outlined
-                      label="Số lượng"
                       hide-details
                       required
                       @blur="$v.quantity.$touch()"
                       @input="$v.quantity.$touch()"
-                    ></v-text-field>
+                    ></v-select>
                   </v-col>
                   <v-col cols="12" class="mb-n4">
                     <v-text-field

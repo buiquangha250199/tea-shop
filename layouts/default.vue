@@ -87,13 +87,13 @@
       <v-spacer />
       <v-spacer />
     </v-app-bar>
-    <v-main>
+    <v-main style="background-color: #f5f5f5">
       <v-container class="pb-8">
         <Nuxt />
       </v-container>
     </v-main>
     <v-footer class="layout-footer" :absolute="true" app>
-      <v-row justify="center" class="message main-container">
+      <v-row justify="center" class="message main-container app-container">
         <v-col cols="12" sm="4" class="text-large">
           <div class="flex-center gap-3">
             <span class="icon mdi mdi-thumb-up-outline"></span>
@@ -131,7 +131,7 @@
           </div>
         </v-col>
       </v-row>
-      <v-row justify="center" class="contact main-container">
+      <v-row justify="center" class="contact main-container app-container">
         <v-col cols="12" sm="6" class="text-large">
           <div class="content">
             <div class="text-subtitle-2 mb-2">LIÊN HỆ</div>
@@ -182,7 +182,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row justify="center" class="other main-container w-full">
+      <v-row justify="center" class="other main-container w-full app-container">
         <v-col cols="12" sm="4" class="text-center">
           <div class="text-subtitle-2">PHƯƠNG THỨC THANH TOÁN</div>
           <v-row>
@@ -372,7 +372,7 @@ export default {
 <style lang="scss" scoped>
 .top-header {
   height: 100px !important;
-  padding: 0px 10%;
+  padding: 0px 16%;
   background-color: #f5f5f5;
   display: flex;
   z-index: 4;
@@ -566,6 +566,7 @@ export default {
     }
   }
   .app-link {
+    justify-content: center;
     .v-btn:not(.v-btn--round).v-size--x-large {
       width: 20%;
     }

@@ -4,21 +4,32 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   server: {
-    // host: process.env.IP_ADDRESS || '54.255.46.159',
+    // host: process.env.IP_ADDRESS,
     host: '0.0.0.0',
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - tea-shop',
-    title: 'tea-shop',
+    titleTemplate: '%s',
+    title: 'Vị cây cỏ nam - Chuyên cung cấp các sản phẩm thảo dược tốt nhất',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'vi',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Vị cây cỏ nam chuyên cung cấp các sản phẩm trà thảo dược thiên nhiên, giúp cải thiện sức khỏe và giảm căng thẳng.',
+      },
       { name: 'format-detection', content: 'telephone=no' },
+      { name: 'author', content: 'Vị cây cỏ nam' },
+      { name: 'robots', content: 'index, follow' },
+      {
+        name: 'keywords',
+        content: 'trà thảo dược, sức khỏe, giảm căng thẳng, Vị cây cỏ nam',
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

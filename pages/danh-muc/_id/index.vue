@@ -13,14 +13,19 @@
         <v-col
           v-for="(product, index) in productsByCategory"
           :key="index"
-          cols="6"
+          cols="12"
           sm="3"
         >
           <v-card
             class="card-item"
             @click="$router.push(`/san-pham/${product?.id}`)"
           >
-            <v-img :src="product.thumbnail" cover></v-img>
+            <v-img
+              :src="product.thumbnail"
+              :height="imgSize * 0.8"
+              :width="imgSize * 0.8"
+              style="margin: auto; border-radius: 0"
+            ></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
               {{ product.price }}₫ /{{ product.unit }}
@@ -36,6 +41,18 @@ export default {
   computed: {
     products() {
       return this.$store.state.products.products
+    },
+    imgSize() {
+      if (this.$vuetify.breakpoint.xl) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      return (window.screen.width * 0.7 * 0.9) / 3
     },
     productsByCategory() {
       return this.products.length

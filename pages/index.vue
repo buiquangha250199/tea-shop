@@ -36,14 +36,18 @@
     </v-col>
     <v-col cols="12" class="product-container mb-8">
       <div class="title mb-6">
-        <div class="text">{{ categories[0]?.name || 'Sản phẩm' }}</div>
+        <div
+          class="text"
+          @click="$router.push(`/danh-muc/${categories[0]?.id}`)"
+        >
+          {{ categories[0]?.name || 'Sản phẩm' }}
+        </div>
       </div>
       <v-carousel
-        cycle
         interval="4000"
         hide-delimiter-background
         show-arrows-on-hover
-        height="325"
+        :height="cSize"
       >
         <template v-for="(product, index) in teaProducts">
           <v-carousel-item
@@ -53,7 +57,7 @@
             <v-row class="flex-nowrap">
               <template v-for="(n, i) in columns">
                 <template v-if="+index + i < teaProducts.length">
-                  <v-col :key="i">
+                  <v-col :key="i" class="item-card-image">
                     <v-sheet
                       v-if="+index + i < teaProducts.length"
                       color="#fff"
@@ -63,11 +67,12 @@
                         class="fill-height"
                         align="center"
                         justify="center"
+                        style="margin: 0 !important; background-color: #f6f6f6"
                       >
                         <div class="display-3">
                           <v-card
                             class="card-item"
-                            width="270"
+                            :max-width="imgSize"
                             @click="
                               $router.push(
                                 `/san-pham/${teaProducts[+index + i].id}`
@@ -76,10 +81,11 @@
                           >
                             <v-img
                               :src="teaProducts[+index + i].thumbnail"
-                              height="200px"
-                              cover
+                              :height="imgSize * 0.8"
+                              :width="imgSize * 0.8"
+                              style="margin: auto; border-radius: 0"
                             ></v-img>
-                            <v-card-title class="title">
+                            <v-card-title class="title -carousel">
                               {{ teaProducts[+index + i].name }}
                             </v-card-title>
                             <v-card-subtitle class="subtitle">
@@ -101,21 +107,31 @@
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">{{ categories[1]?.name || 'Sản phẩm' }}</div>
+        <div
+          class="text"
+          @click="$router.push(`/danh-muc/${categories[1]?.id}`)"
+        >
+          {{ categories[1]?.name || 'Sản phẩm' }}
+        </div>
       </div>
       <v-row>
         <v-col
           v-for="(product, index) in sub1Products"
           :key="index"
-          cols="6"
+          cols="12"
           sm="3"
         >
           <v-card
             class="card-item"
-            width="250"
+            style="margin: auto"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
-            <v-img :src="product.thumbnail" height="200px" cover></v-img>
+            <v-img
+              :src="product.thumbnail"
+              :height="imgSize2 * 0.8"
+              :width="imgSize2 * 0.8"
+              style="margin: auto; border-radius: 0"
+            ></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
               {{ product.price }}₫ /{{ product.unit }}
@@ -132,21 +148,31 @@
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
-        <div class="text">{{ categories[2]?.name || 'Sản phẩm' }}</div>
+        <div
+          class="text"
+          @click="$router.push(`/danh-muc/${categories[2].id}`)"
+        >
+          {{ categories[2]?.name || 'Sản phẩm' }}
+        </div>
       </div>
       <v-row>
         <v-col
           v-for="(product, index) in sub2Products"
           :key="index"
-          cols="6"
+          cols="12"
           sm="3"
         >
           <v-card
             class="card-item"
-            width="250"
+            style="margin: auto"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
-            <v-img :src="product.thumbnail" height="200px" cover></v-img>
+            <v-img
+              :src="product.thumbnail"
+              :height="imgSize2 * 0.8"
+              :width="imgSize2 * 0.8"
+              style="margin: auto; border-radius: 0"
+            ></v-img>
             <v-card-title class="title"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
               {{ product.price }}₫ /{{ product.unit }}
@@ -185,9 +211,45 @@ export default {
         return 4
       }
       if (this.$vuetify.breakpoint.md) {
-        return 2
+        return 4
       }
       return 1
+    },
+    imgSize() {
+      if (this.$vuetify.breakpoint.xl) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return (window.screen.width * 0.7 * 0.9) / 3
+      }
+      return (window.screen.width * 0.7 * 0.9) / 3
+    },
+    imgSize2() {
+      if (this.$vuetify.breakpoint.xl) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      return (window.screen.width * 0.7 * 0.9) / 3
+    },
+    cSize() {
+      if (this.$vuetify.breakpoint.xl) {
+        return 325
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return 325
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return 325
+      }
+      return 250
     },
     subColumns() {
       if (this.$vuetify.breakpoint.xl) {
@@ -244,6 +306,11 @@ export default {
   width: auto;
   object-fit: cover;
 }
+.item-card-image {
+  &:last-child {
+    margin-right: 0%;
+  }
+}
 @media only screen and(min-width: 768px) and (max-width: 1025px) {
   .sp {
     display: none;
@@ -257,6 +324,11 @@ export default {
     max-height: 200px;
     width: auto;
     object-fit: cover;
+  }
+}
+@media only screen and(max-width: 1024px) {
+  .product-container {
+    margin-bottom: 0 !important;
   }
 }
 </style>

@@ -225,7 +225,7 @@ export default {
       if (this.$vuetify.breakpoint.md) {
         return (window.screen.width * 0.7 * 0.9) / 3
       }
-      return (window.screen.width * 0.7 * 0.9) / 3
+      return 150
     },
     imgSize2() {
       if (this.$vuetify.breakpoint.xl) {
@@ -237,7 +237,7 @@ export default {
       if (this.$vuetify.breakpoint.md) {
         return (window.screen.width * 0.7 * 0.9) / 4
       }
-      return (window.screen.width * 0.7 * 0.9) / 3
+      return 150
     },
     cSize() {
       if (this.$vuetify.breakpoint.xl) {

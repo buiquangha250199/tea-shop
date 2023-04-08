@@ -16,7 +16,7 @@
             @click="$router.push(`/tin-tuc/${item?.id}`)"
           >
             <v-img :src="item.thumbnail" cover></v-img>
-            <v-card-title class="title"> {{ item.title }}</v-card-title>
+            <v-card-title class="ctitle"> {{ item.title }}</v-card-title>
           </v-card>
         </v-col>
       </v-row>

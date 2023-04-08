@@ -72,7 +72,8 @@
                         <div class="display-3">
                           <v-card
                             class="card-item"
-                            :max-width="imgSize"
+                            :width="imgSize2.w"
+                            :height="imgSize2.h"
                             @click="
                               $router.push(
                                 `/san-pham/${teaProducts[+index + i].id}`
@@ -81,11 +82,11 @@
                           >
                             <v-img
                               :src="teaProducts[+index + i].thumbnail"
-                              :height="imgSize * 0.8"
-                              :width="imgSize * 0.8"
+                              :height="imgSize2.h * 0.65"
+                              :width="imgSize2.w * 0.8"
                               style="margin: auto; border-radius: 0"
                             ></v-img>
-                            <v-card-title class="title -carousel">
+                            <v-card-title class="ctitle -carousel">
                               {{ teaProducts[+index + i].name }}
                             </v-card-title>
                             <v-card-subtitle class="subtitle">
@@ -123,16 +124,18 @@
         >
           <v-card
             class="card-item"
+            :width="imgSize2.w"
+            :height="imgSize2.h"
             style="margin: auto"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2 * 0.8"
-              :width="imgSize2 * 0.8"
+              :height="imgSize2.h * 0.65"
+              :width="imgSize2.w * 0.8"
               style="margin: auto; border-radius: 0"
             ></v-img>
-            <v-card-title class="title"> {{ product.name }}</v-card-title>
+            <v-card-title class="ctitle"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
               {{ product.price }}₫ /{{ product.unit }}
             </v-card-subtitle>
@@ -165,15 +168,17 @@
           <v-card
             class="card-item"
             style="margin: auto"
+            :width="imgSize2.w"
+            :height="imgSize2.h"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2 * 0.8"
-              :width="imgSize2 * 0.8"
+              :height="imgSize2.h * 0.65"
+              :width="imgSize2.w * 0.8"
               style="margin: auto; border-radius: 0"
             ></v-img>
-            <v-card-title class="title"> {{ product.name }}</v-card-title>
+            <v-card-title class="ctitle"> {{ product.name }}</v-card-title>
             <v-card-subtitle class="subtitle">
               {{ product.price }}₫ /{{ product.unit }}
             </v-card-subtitle>
@@ -228,14 +233,15 @@ export default {
       return 150
     },
     imgSize2() {
+      const size = (window.screen.width * 0.7 * 0.9) / 4
       if (this.$vuetify.breakpoint.xl) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 1.1 }
       }
       if (this.$vuetify.breakpoint.md) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size }
       }
       return 150
     },

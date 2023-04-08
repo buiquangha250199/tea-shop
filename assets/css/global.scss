@@ -119,11 +119,10 @@ a {
       transform: scale(1.05);
       transition: all 0.5s;
     }
-    .title {
+    .ctitle {
       text-align: center;
       color: #4e342e;
       display: block;
-      font-size: 15px !important;
       word-break: break-word;
     }
     .subtitle {
@@ -157,10 +156,34 @@ a {
   .app-container {
     padding: 0 15%;
   }
+  .v-main__wrap {
+    padding: 0 15%;
+  }
   .pc {
     display: block;
   }
+  .card-item {
+    .ctitle {
+      font-size: 15px !important;
+    }
+  }
+  .top-header {
+    padding: 0 15% !important;
+  }
 }
+
+@media only screen and (min-width: 1920px) {
+  .app-container {
+    padding: 0 20%;
+  }
+  .v-main__wrap {
+    padding: 0 20%;
+  }
+  .top-header {
+    padding: 0 20% !important;
+  }
+}
+
 @media only screen and (max-width: 1023px) {
   .app-container {
     padding: 0 2%;
@@ -174,6 +197,11 @@ a {
   .pc {
     display: none;
   }
+  .card-item {
+    .ctitle {
+      font-size: 12px !important;
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -182,7 +210,7 @@ a {
   }
 }
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
-  .product-container .card-item .title {
+  .product-container .card-item .ctitle {
     min-height: 100px;
     &.-carousel {
       min-height: 70px;
@@ -208,7 +236,7 @@ a {
       }
     }
   }
-  .product-container .card-item .title {
-    font-size: 13px !important;
+  .product-container .card-item .ctitle {
+    font-size: 12px !important;
   }
 }

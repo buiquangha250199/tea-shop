@@ -17,7 +17,7 @@
               :src="news[0].thumbnail"
               cover
             ></v-img>
-            <v-card-title class="title"> {{ news[0].title }}</v-card-title>
+            <v-card-title class="ctitle"> {{ news[0].title }}</v-card-title>
           </v-card>
         </v-col>
         <v-col cols="12" md="8">

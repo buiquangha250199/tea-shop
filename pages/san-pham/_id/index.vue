@@ -176,7 +176,7 @@
             width="100%"
             :src="product?.thumbnail"
           ></v-img>
-          <v-card-title class="title"> {{ product?.name }}</v-card-title>
+          <v-card-title class="ctitle"> {{ product?.name }}</v-card-title>
           <v-card-subtitle class="subtitle">
             {{ product?.price }}₫ /{{ product?.unit }}
           </v-card-subtitle>

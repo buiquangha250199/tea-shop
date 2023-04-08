@@ -2,7 +2,7 @@
   <v-app dark class="default-layout">
     <v-system-bar
       ref="system-bar"
-      :class="['top-header', fixed ? '-fixed elevation-3' : '']"
+      :class="['top-header app-container', fixed ? '-fixed elevation-3' : '']"
       :fixed="fixed"
       transition="scroll-y-transition"
     >
@@ -39,12 +39,11 @@
       </div>
     </v-system-bar>
     <v-app-bar
-      class="nav-bar main-container"
+      class="nav-bar main-container app-container"
       :clipped-left="clipped"
       absolute
       app
     >
-      <v-spacer />
       <v-row align="center" class="app-link">
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
@@ -372,7 +371,6 @@ export default {
 <style lang="scss" scoped>
 .top-header {
   height: 100px !important;
-  padding: 0px 16%;
   background-color: #f5f5f5;
   display: flex;
   z-index: 4;
@@ -523,7 +521,6 @@ export default {
   .app-logo {
     width: 140px;
     height: auto;
-    margin-left: -35px;
     margin-right: 20px;
     cursor: pointer;
   }

@@ -278,6 +278,9 @@ export default {
     news() {
       return this.$store.state.news.news
     },
+    info() {
+      return this.$store.state.info.info
+    },
     teaProducts() {
       const allTeaProducts = this.products.length
         ? this.products.filter((product) => product.category.id === 1)

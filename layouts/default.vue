@@ -41,21 +41,15 @@
     <v-app-bar
       class="nav-bar main-container app-container"
       :clipped-left="clipped"
+      style="height: 50px"
       absolute
       app
     >
       <v-row align="center" class="app-link">
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
-            <v-btn
-              class="menubtn"
-              color="#fff"
-              text
-              large
-              v-bind="attrs"
-              v-on="on"
-            >
-              <div class="mdi mdi-menu-down text-large"></div>
+            <v-btn class="menubtn" color="#fff" text v-bind="attrs" v-on="on">
+              <div class="mdi mdi-menu-down text-md-large"></div>
               Danh mục
             </v-btn>
           </template>
@@ -72,13 +66,13 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn class="text-btn" color="#fff" to="/san-pham/" text large>
+        <v-btn class="text-btn" color="#fff" to="/san-pham/" text>
           Sản phẩm
         </v-btn>
-        <v-btn class="text-btn" color="#fff" to="/tin-tuc/" text large>
+        <v-btn class="text-btn" color="#fff" to="/tin-tuc/" text>
           Tin tức
         </v-btn>
-        <v-btn class="text-btn" color="#fff" to="/lien-he/" text large>
+        <v-btn class="text-btn" color="#fff" to="/lien-he/" text>
           Liên hệ
         </v-btn>
       </v-row>
@@ -134,13 +128,13 @@
         <v-col cols="12" sm="6" class="text-large">
           <div class="content">
             <div class="text-subtitle-2 mb-2">LIÊN HỆ</div>
-            <div class="text-h6 font-bold mb-2">TRÀ HOA NHÀ MỘC</div>
+            <div class="text-h6 font-bold mb-2">{{ info.name }}</div>
             <div class="text-normal mb-2">
-              <span class="font-bold">Địa chỉ: </span>505 Trần Khát Chân – Thanh
-              Nhàn – HBT – HN
+              <span class="font-bold">Địa chỉ: </span>{{ info.address }}
             </div>
             <div class="text-normal mb-2">
-              <span class="font-bold">Số điện thoại: </span>0923.456.789
+              <span class="font-bold">Số điện thoại: </span
+              >{{ info.phone_number }}
             </div>
           </div>
         </v-col>
@@ -234,24 +228,24 @@
       <v-row class="flex-center">
         <v-col cols="12">
           <p class="text-normal text-center">
-            © 2019 của Trà Hoa Nhà Mộc <br />Giấy chứng nhận cơ sở đủ điều kiện
+            © 2019 của {{ info.name }} <br />Giấy chứng nhận cơ sở đủ điều kiện
             an toàn thực phẩm<br />Sản Phẩm không phải đúng với tất cả mọi
             người, tùy vào mỗi cơ địa sẽ có những mức tác dụng khác nhau<br />Nội
             dung được đăng tải lên website chỉ mang tính chất tham khảo
           </p>
         </v-col>
       </v-row>
-      <a class="hotline" title="hotline" href="tel:0923456789">
-        <span class="pc">Hotline 092.345.6789</span>
+      <a class="hotline" title="hotline" :href="`tel:${info.phone_number}`">
+        <span class="pc">Hotline {{ info.phone_number }}</span>
         <span class="mdi mdi-phone mobile text-normal">Hotline</span>
       </a>
       <a
         class="zalo"
         title="zalo"
-        href="https://zalo.me/0923456789"
+        :href="`https://zalo.me/${info.phone_number}`"
         target="_blank"
       >
-        <span class="pc">Zalo 092.345.6789</span>
+        <span class="pc">Zalo {{ info.phone_number }}</span>
         <span class="mdi mdi-phone mobile text-normal">Zalo</span>
       </a>
       <div class="pagetop" @click="scrollToTop">
@@ -332,6 +326,9 @@ export default {
     categories() {
       return this.$store.state.categories.categories
     },
+    info() {
+      return this.$store.state.info.info
+    },
   },
   beforeMount() {
     window.addEventListener('scroll', this.handleScroll)
@@ -343,6 +340,7 @@ export default {
     this.$store.dispatch('products/fetchProducts', {})
     this.$store.dispatch('categories/fetchCategories')
     this.$store.dispatch('news/fetchNews')
+    this.$store.dispatch('info/fetchInfo')
   },
   methods: {
     handleScroll() {
@@ -387,7 +385,7 @@ export default {
   > .text > .icon {
     display: flex;
     justify-content: center;
-    font-size: 24px;
+    font-size: 18px;
     gap: 4px;
   }
   > .search {
@@ -417,12 +415,17 @@ export default {
 
 .app-link {
   .v-btn {
-    margin-right: 5px;
+    height: 50px;
+    border-radius: 0;
   }
 }
 
 .menubtn {
-  width: 25% !important;
+  height: 50px !important;
+}
+
+.btnitem {
+  height: 50px !important;
 }
 
 .about-list {
@@ -544,6 +547,9 @@ export default {
   }
 }
 @media only screen and (max-width: 768px) {
+  .product-container .v-carousel__controls {
+    bottom: -18px;
+  }
   .nav-bar.main-container {
     padding: 0 2%;
   }
@@ -573,9 +579,9 @@ export default {
       font-size: 12px;
       width: 20% !important;
       min-width: unset;
+      height: 50px;
     }
     > .menubtn {
-      margin-right: 20px;
       font-size: 12px;
     }
   }

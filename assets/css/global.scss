@@ -17,6 +17,7 @@ a {
 .main-container {
   .v-toolbar__content {
     padding: 0;
+    height: 50px !important;
   }
 }
 .text-color-main {
@@ -185,11 +186,14 @@ a {
 }
 
 @media only screen and (max-width: 1023px) {
+  .v-application ul {
+    padding-left: 12px !important;
+  }
   .app-container {
     padding: 0 2%;
   }
   .top-header {
-    padding: 0 2% !important;
+    padding: 0 7% !important;
   }
   .v-main__wrap {
     padding: 0 2% !important;

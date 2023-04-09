@@ -49,7 +49,7 @@
                   dark
                   x-large
                   width="200px"
-                  @click="dialog = true"
+                  @click="openDialog"
                 >
                   Mua ngay
                 </v-btn>
@@ -152,13 +152,6 @@
               </v-card>
             </div>
           </v-col>
-          <v-col v-if="productDetail?.detail" cols="12" class="mt-n4">
-            <div
-              class="mb-8 pa-6"
-              style="background-color: #fff"
-              v-html="productDetail?.detail"
-            ></div>
-          </v-col>
         </v-row>
       </v-col>
       <v-col cols="12" md="3" class="pc product-container">
@@ -183,7 +176,7 @@
         </v-card>
       </v-col>
       <v-row justify="center">
-        <v-dialog v-model="dialog" max-width="560">
+        <v-dialog v-if="dialog" v-model="dialog" max-width="560">
           <v-card>
             <v-card-title>
               <span class="text-h5">{{ productDetail?.name }}</span>
@@ -219,17 +212,18 @@
                   </v-col>
                   <v-col cols="12">
                     <v-select
-                      v-model.number="quantity"
+                      v-model="selection"
                       label="Số lượng"
-                      :items="
-                        productDetail?.options.map((option) => option.price)
-                      "
+                      :items="productDetail?.options"
+                      item-text="unit"
+                      item-value="price"
                       :error-messages="amountErrors"
                       outlined
                       hide-details
                       required
-                      @blur="$v.quantity.$touch()"
-                      @input="$v.quantity.$touch()"
+                      return-object
+                      @blur="$v.selection.$touch()"
+                      @input="$v.selection.$touch()"
                     ></v-select>
                   </v-col>
                   <v-col cols="12" class="mb-n4">
@@ -286,7 +280,7 @@
 <script>
 import { validationMixin } from 'vuelidate'
 import { formatNumber, getTwoRandomProducts } from '~/helper/common'
-const { required, between, integer } = require('vuelidate/lib/validators')
+const { required } = require('vuelidate/lib/validators')
 
 export default {
   mixins: [validationMixin],
@@ -303,14 +297,13 @@ export default {
       snackbar: false,
       loadingBtn: false,
       messageSnackbar: '',
-      quantity: 1,
+      quantity: '',
+      selection: { unit: 'gói', price: 600000 },
     }
   },
   validations: {
-    quantity: {
+    selection: {
       required,
-      integer,
-      between: between(1, 100000),
     },
     contactTel: {
       required,
@@ -328,10 +321,8 @@ export default {
   computed: {
     amountErrors() {
       const errors = []
-      if (!this.$v.quantity.$dirty) return errors
-      !this.$v.quantity.integer &&
-        errors.push('Vui lòng nhập giá trị số nguyên > 0')
-      !this.$v.quantity.required && errors.push('Vui lòng nhập giá trị')
+      if (!this.$v.selection.$dirty) return errors
+      !this.$v.selection.required && errors.push('Vui lòng chọn giá trị')
       return errors
     },
     contactTelErrors() {
@@ -377,6 +368,14 @@ export default {
   },
   methods: {
     formatNumber,
+    openDialog() {
+      this.selection = this.quantity
+        ? this.productDetail.options.find(
+            (option) => option.unit === this.quantity
+          )
+        : { unit: 'gói', price: '30.000' }
+      this.dialog = true
+    },
     getErrors(field) {
       const errors = []
       if (!this.$v[field].$dirty) return errors
@@ -388,8 +387,8 @@ export default {
         name: this.name,
         address: this.address,
         phone_number: this.tel,
-        quantity: this.quantity,
-        price: this.productDetail.priceValue,
+        quantity: this.selection.unit,
+        price: this.selection.price,
         product: this.productDetail.id,
       }
       const order = await this.$axios.$post(

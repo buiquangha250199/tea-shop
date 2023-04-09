@@ -81,14 +81,14 @@
               </v-col>
             </v-col>
             <v-col cols="12" md="6">
-              <div class="title text-h6 mb-4">Trà hoa nhà Mộc</div>
+              <div class="title text-h6 mb-4">{{ info.name }}</div>
               <div class="text-subtitle-1 mb-4">
-                <strong class="text-subtitle-2">Địa chỉ</strong>: 505 Trần Khát
-                Chân – Thanh Nhàn – HBT – HN
+                <strong class="text-subtitle-2">Địa chỉ: </strong
+                >{{ info.address }}
               </div>
               <div class="text-subtitle-1 mb-4">
-                <strong class="text-subtitle-2">Số điện thoại:</strong>:
-                094.881.63.36
+                <strong class="text-subtitle-2">Số điện thoại: </strong
+                >{{ info.phone_number }}
               </div>
             </v-col>
           </v-row>
@@ -144,6 +144,9 @@ export default {
         return errors
       !this.$v.tel.required && errors.push('Vui lòng nhập giá trị')
       return errors
+    },
+    info() {
+      return this.$store.state.info.info
     },
   },
   methods: {

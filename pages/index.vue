@@ -372,7 +372,7 @@ export default {
   height: auto !important;
 }
 .banner-img {
-  max-height: 500px;
+  /* max-height: 500px; */
   width: auto;
   object-fit: cover;
 }
@@ -386,7 +386,7 @@ export default {
     display: none;
   }
 }
-@media only screen and(min-width: 630px) and (max-width: 767px) {
+@media only screen and(min-width: 600px) and (max-width: 767px) {
   .v-carousel__item {
     height: 200px !important;
   }

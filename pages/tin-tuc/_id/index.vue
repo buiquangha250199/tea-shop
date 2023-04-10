@@ -1,6 +1,6 @@
 // eslint-disable-next-line vue/no-v-html
 <template>
-  <div class="mt-4 mb-4">
+  <div class="mt-4 mb-4 page-news">
     <v-breadcrumbs :items="items">
       <template #divider>
         <v-icon>mdi-chevron-right</v-icon>

@@ -269,6 +269,18 @@ a {
   }
 }
 @media only screen and (max-width: 767px) {
+  .v-window {
+    height: 200px !important;
+  }
+  .v-window-item {
+    .v-image {
+      height: 200px !important;
+    }
+  }
+  .banner-img {
+    height: 200px;
+    object-fit: cover;
+  }
   .v-main__wrap {
     padding-bottom: 50px !important;
   }
@@ -298,13 +310,19 @@ a {
 
 @media only screen and (max-width: 600px) {
   .product-container .card-item .v-image {
-    height: 100px;
-    width: 100px;
+    // height: 100px;
+    // width: 100px;
     margin: auto !important;
   }
   .feature-card {
     .v-list-item {
       font-size: 13px;
+    }
+  }
+  .page-news {
+    .v-breadcrumbs {
+      padding-left: 0 !important;
+      margin-top: -25px;
     }
   }
 }

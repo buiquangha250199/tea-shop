@@ -225,7 +225,7 @@ export default {
         return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return { w: size, h: size * 1 }
+        return { w: size, h: size * 1.1 }
       }
       if (this.$vuetify.breakpoint.md) {
         return { w: size, h: size * 1.1 }
@@ -238,7 +238,7 @@ export default {
         return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return { w: size, h: size * 1.1 }
+        return { w: size, h: size * 1 }
       }
       if (this.$vuetify.breakpoint.md) {
         return { w: size, h: size }

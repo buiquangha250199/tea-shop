@@ -12,7 +12,7 @@
         >{{ category.name }}
       </nuxt-link>
     </v-col>
-    <v-col cols="12" sm="9" class="mb-8">
+    <v-col cols="12" sm="9" class="mb-4">
       <v-carousel
         cycle
         interval="3000"
@@ -34,7 +34,7 @@
         </v-carousel-item>
       </v-carousel>
     </v-col>
-    <v-col cols="12" class="product-container mb-8">
+    <!-- <v-col cols="12" class="product-container mb-8">
       <div class="title mb-6">
         <div
           class="text"
@@ -104,6 +104,50 @@
           </v-carousel-item>
         </template>
       </v-carousel>
+    </v-col> -->
+    <v-col cols="12" class="product-container sub-product mb-8">
+      <div class="title mb-6">
+        <div
+          class="text"
+          @click="$router.push(`/danh-muc/${categories[0]?.id}`)"
+        >
+          {{ categories[0]?.name || 'Sản phẩm' }}
+        </div>
+      </div>
+      <v-row>
+        <v-col
+          v-for="(product, index) in firstProducts"
+          :key="index"
+          cols="6"
+          sm="3"
+        >
+          <v-card
+            class="card-item"
+            :width="imgSize2.w"
+            style="margin: auto"
+            @click="$router.push(`/san-pham/${product.id}`)"
+          >
+            <v-img
+              :src="product.thumbnail"
+              :height="imgSize2.h * 0.75"
+              :width="imgSize2.w * 0.75"
+              style="margin: auto; border-radius: 0"
+            ></v-img>
+            <v-card-title class="ctitle index-card">
+              {{ product.name }}
+              <v-card-subtitle class="subtitle">
+                {{ product.price }}₫ /{{ product.unit }}
+              </v-card-subtitle></v-card-title
+            >
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row style="text-align: center">
+        <v-col
+          ><v-btn to="/danh-muc/1" color="green darken-2" dark large>
+            Xem tất cả <span class="mdi mdi-arrow-right-thick"></span></v-btn
+        ></v-col>
+      </v-row>
     </v-col>
     <v-col cols="12" class="product-container sub-product mb-8">
       <div class="title mb-6">
@@ -118,32 +162,33 @@
         <v-col
           v-for="(product, index) in sub1Products"
           :key="index"
-          cols="12"
+          cols="6"
           sm="3"
         >
           <v-card
             class="card-item"
             :width="imgSize2.w"
-            :height="imgSize2.h"
             style="margin: auto"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2.h * 0.6"
-              :width="imgSize2.w * 0.8"
+              :height="imgSize2.h * 0.75"
+              :width="imgSize2.w * 0.75"
               style="margin: auto; border-radius: 0"
             ></v-img>
-            <v-card-title class="ctitle"> {{ product.name }}</v-card-title>
-            <v-card-subtitle class="subtitle">
-              {{ product.price }}₫ /{{ product.unit }}
-            </v-card-subtitle>
+            <v-card-title class="ctitle">
+              {{ product.name }}
+              <v-card-subtitle class="subtitle">
+                {{ product.price }}₫ /{{ product.unit }}
+              </v-card-subtitle></v-card-title
+            >
           </v-card>
         </v-col>
       </v-row>
       <v-row style="text-align: center">
         <v-col
-          ><v-btn to="/danh-muc/5" color="green darken-2" dark large>
+          ><v-btn to="/danh-muc/2" color="green darken-2" dark large>
             Xem tất cả <span class="mdi mdi-arrow-right-thick"></span></v-btn
         ></v-col>
       </v-row>
@@ -161,26 +206,27 @@
         <v-col
           v-for="(product, index) in sub2Products"
           :key="index"
-          cols="12"
+          cols="6"
           sm="3"
         >
           <v-card
             class="card-item"
             style="margin: auto"
             :width="imgSize2.w"
-            :height="imgSize2.h"
             @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2.h * 0.6"
-              :width="imgSize2.w * 0.8"
+              :height="imgSize2.h * 0.75"
+              :width="imgSize2.w * 0.75"
               style="margin: auto; border-radius: 0"
             ></v-img>
-            <v-card-title class="ctitle"> {{ product.name }}</v-card-title>
-            <v-card-subtitle class="subtitle">
-              {{ product.price }}₫ /{{ product.unit }}
-            </v-card-subtitle>
+            <v-card-title class="ctitle">
+              {{ product.name }}
+              <v-card-subtitle class="subtitle">
+                {{ product.price }}₫ /{{ product.unit }}
+              </v-card-subtitle></v-card-title
+            >
           </v-card>
         </v-col>
       </v-row>
@@ -245,6 +291,18 @@ export default {
       }
       return 150
     },
+    imgSize() {
+      if (this.$vuetify.breakpoint.xl) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      return (window.screen.width * 0.7 * 0.9) / 4
+    },
     cSize() {
       if (this.$vuetify.breakpoint.xl) {
         return 325
@@ -290,11 +348,14 @@ export default {
         return allTeaProducts.slice(0, 8)
       else return allTeaProducts
     },
-    sub1Products() {
+    firstProducts() {
       return getProductByType(this.products, 1).slice(0, 4)
     },
-    sub2Products() {
+    sub1Products() {
       return getProductByType(this.products, 2).slice(0, 4)
+    },
+    sub2Products() {
+      return getProductByType(this.products, 3).slice(0, 4)
     },
   },
 }

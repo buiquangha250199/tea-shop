@@ -102,7 +102,7 @@
             </div>
             <div class="mt-4 mb-4">
               <v-card title="Card title" variant="outlined">
-                <v-card-item>
+                <v-card-item class="feature-card">
                   <v-card-title
                     style="
                       background-color: #388e3c;
@@ -110,6 +110,7 @@
                       font-size: 18px;
                       word-break: break-word;
                     "
+                    class="feature-title"
                     >CAM KẾT NGUỒN GỐC 100% TỪ THIÊN NHIÊN</v-card-title
                   >
                   <v-list lines="one">
@@ -135,7 +136,7 @@
                       ><span
                         class="mdi mdi-arrow-right-bold-circle warning--text mr-2"
                       ></span>
-                      Sản phẩm có nguồn gốc
+                      Nguồn gốc
                       <strong class="ml-1"
                         >100% từ thiên nhiên</strong
                       ></v-list-item

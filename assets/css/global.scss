@@ -41,6 +41,9 @@ a {
     background-color: #fff !important;
   }
 }
+.v-breadcrumbs {
+  padding: 12px 0 !important;
+}
 .flex-center {
   display: flex;
   align-items: center;
@@ -110,6 +113,11 @@ a {
     border-top-right-radius: 36px;
     border-bottom-right-radius: 36px;
   }
+  .index-card {
+    > .subtitle {
+      padding: 0 !important;
+    }
+  }
   .card-item {
     cursor: pointer;
     width: 250px;
@@ -132,6 +140,7 @@ a {
       text-align: center;
       font-weight: 900;
       font-size: 15px !important;
+      padding: 0 !important;
     }
   }
 }
@@ -171,6 +180,9 @@ a {
     display: block;
   }
   .card-item {
+    .v-image {
+      height: 175px;
+    }
     .ctitle {
       font-size: 15px !important;
     }
@@ -193,6 +205,14 @@ a {
 }
 
 @media only screen and (max-width: 1023px) {
+  .v-window {
+    max-height: 300px;
+  }
+  .v-window-item {
+    .v-image {
+      max-height: 300px;
+    }
+  }
   .v-application ul {
     padding-left: 12px !important;
   }
@@ -224,10 +244,34 @@ a {
   .card-item {
     .v-image {
       height: 140px !important;
+      margin: 0 10px !important;
+    }
+  }
+  .feature-card {
+    .feature-title {
+      font-size: 14px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1240px) and (max-width: 1440px) {
+  .feature-card {
+    .v-list-item {
+      font-size: 16px;
+    }
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1039px) {
+  .feature-card {
+    .v-list-item {
+      font-size: 13px;
     }
   }
 }
 @media only screen and (max-width: 767px) {
+  .v-main__wrap {
+    padding-bottom: 50px !important;
+  }
   .mobile {
     display: block;
   }
@@ -243,10 +287,24 @@ a {
       width: 175px;
       .v-image {
         height: 150px;
+        margin: 0 12.5px !important;
       }
     }
   }
   .product-container .card-item .ctitle {
     font-size: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .product-container .card-item .v-image {
+    height: 100px;
+    width: 100px;
+    margin: auto !important;
+  }
+  .feature-card {
+    .v-list-item {
+      font-size: 13px;
+    }
   }
 }

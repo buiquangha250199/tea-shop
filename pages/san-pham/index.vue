@@ -18,12 +18,14 @@
         >
           <v-card
             class="card-item"
+            style="margin: auto; padding-bottom: 12px"
+            :width="imgSize.w"
             @click="$router.push(`/san-pham/${product?.id}`)"
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize * 0.8"
-              :width="imgSize * 0.8"
+              :height="imgSize.h * 0.75"
+              :width="imgSize.w * 0.75"
               style="margin: auto; border-radius: 0"
             ></v-img>
             <v-card-title class="ctitle"> {{ product.name }}</v-card-title>
@@ -57,14 +59,15 @@ export default {
       return this.$store.state.products.products
     },
     imgSize() {
+      const size = (window.screen.width * 0.7 * 0.9) / 4
       if (this.$vuetify.breakpoint.xl) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 1 }
       }
       if (this.$vuetify.breakpoint.md) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size }
       }
       return 150
     },

@@ -13,12 +13,14 @@
         <v-col v-for="(item, index) in news" :key="index" cols="6" sm="3">
           <v-card
             class="card-item"
+            style="margin: auto; padding-bottom: 12px"
+            :width="imgSize.w"
             @click="$router.push(`/tin-tuc/${item?.id}`)"
           >
             <v-img
               :src="item.thumbnail"
-              :height="imgSize * 0.7"
-              :width="imgSize * 0.7"
+              :height="imgSize.h * 0.75"
+              :width="imgSize.w * 0.75"
               style="margin: auto; border-radius: 0"
             ></v-img>
             <v-card-title class="ctitle"> {{ item.title }}</v-card-title>
@@ -49,14 +51,15 @@ export default {
       return this.$store.state.news.news
     },
     imgSize() {
+      const size = (window.screen.width * 0.7 * 0.9) / 4
       if (this.$vuetify.breakpoint.xl) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 1 }
       }
       if (this.$vuetify.breakpoint.md) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size }
       }
       return 150
     },

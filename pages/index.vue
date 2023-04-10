@@ -222,7 +222,7 @@ export default {
     imgSize1() {
       const size = (window.screen.width * 0.7 * 0.9) / 4
       if (this.$vuetify.breakpoint.xl) {
-        return { w: size, h: size * 0.9 }
+        return { w: size, h: size * 0.8 }
       }
       if (this.$vuetify.breakpoint.lg) {
         return { w: size, h: size * 1.1 }
@@ -250,7 +250,7 @@ export default {
         return 325
       }
       if (this.$vuetify.breakpoint.lg) {
-        return 275
+        return 290
       }
       if (this.$vuetify.breakpoint.md) {
         return 250

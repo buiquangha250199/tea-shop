@@ -13,7 +13,7 @@
         <v-col
           v-for="(product, index) in productsByCategory"
           :key="index"
-          cols="12"
+          cols="6"
           sm="3"
         >
           <v-card
@@ -52,7 +52,7 @@ export default {
       if (this.$vuetify.breakpoint.md) {
         return (window.screen.width * 0.7 * 0.9) / 4
       }
-      return (window.screen.width * 0.7 * 0.9) / 3
+      return 150
     },
     productsByCategory() {
       return this.products.length

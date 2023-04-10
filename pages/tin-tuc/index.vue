@@ -15,7 +15,12 @@
             class="card-item"
             @click="$router.push(`/tin-tuc/${item?.id}`)"
           >
-            <v-img :src="item.thumbnail" cover></v-img>
+            <v-img
+              :src="item.thumbnail"
+              :height="imgSize * 0.7"
+              :width="imgSize * 0.7"
+              style="margin: auto; border-radius: 0"
+            ></v-img>
             <v-card-title class="ctitle"> {{ item.title }}</v-card-title>
           </v-card>
         </v-col>
@@ -42,6 +47,18 @@ export default {
   computed: {
     news() {
       return this.$store.state.news.news
+    },
+    imgSize() {
+      if (this.$vuetify.breakpoint.xl) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.lg) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      if (this.$vuetify.breakpoint.md) {
+        return (window.screen.width * 0.7 * 0.9) / 4
+      }
+      return 150
     },
   },
 }

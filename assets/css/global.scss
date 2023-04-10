@@ -131,7 +131,7 @@ a {
       display: block;
       text-align: center;
       font-weight: 900;
-      font-size: 16px !important;
+      font-size: 14px !important;
     }
   }
 }
@@ -152,6 +152,13 @@ a {
 .v-main__wrap {
   padding: 0 15%;
 }
+@media screen and (max-width: 1440px) {
+  .card-item {
+    .ctitle {
+      padding: 10px;
+    }
+  }
+}
 
 @media only screen and (min-width: 1024px) {
   .app-container {
@@ -165,7 +172,7 @@ a {
   }
   .card-item {
     .ctitle {
-      font-size: 15px !important;
+      font-size: 13px !important;
     }
   }
   .top-header {
@@ -214,10 +221,9 @@ a {
   }
 }
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
-  .product-container .card-item .ctitle {
-    min-height: 100px;
-    &.-carousel {
-      min-height: 70px;
+  .card-item {
+    .v-image {
+      height: 140px !important;
     }
   }
 }

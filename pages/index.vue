@@ -64,7 +64,6 @@
                       height="100%"
                     >
                       <v-row
-                        class="fill-height"
                         align="center"
                         justify="center"
                         style="margin: 0 !important; background-color: #f6f6f6"
@@ -72,8 +71,8 @@
                         <div class="display-3">
                           <v-card
                             class="card-item"
-                            :width="imgSize2.w"
-                            :height="imgSize2.h"
+                            :width="imgSize1.w"
+                            :height="imgSize1.h"
                             @click="
                               $router.push(
                                 `/san-pham/${teaProducts[+index + i].id}`
@@ -131,7 +130,7 @@
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2.h * 0.65"
+              :height="imgSize2.h * 0.6"
               :width="imgSize2.w * 0.8"
               style="margin: auto; border-radius: 0"
             ></v-img>
@@ -174,7 +173,7 @@
           >
             <v-img
               :src="product.thumbnail"
-              :height="imgSize2.h * 0.65"
+              :height="imgSize2.h * 0.6"
               :width="imgSize2.w * 0.8"
               style="margin: auto; border-radius: 0"
             ></v-img>
@@ -220,17 +219,18 @@ export default {
       }
       return 1
     },
-    imgSize() {
+    imgSize1() {
+      const size = (window.screen.width * 0.7 * 0.9) / 4
       if (this.$vuetify.breakpoint.xl) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 0.9 }
       }
       if (this.$vuetify.breakpoint.lg) {
-        return (window.screen.width * 0.7 * 0.9) / 4
+        return { w: size, h: size * 1 }
       }
       if (this.$vuetify.breakpoint.md) {
-        return (window.screen.width * 0.7 * 0.9) / 3
+        return { w: size, h: size * 1.1 }
       }
-      return 150
+      return 110
     },
     imgSize2() {
       const size = (window.screen.width * 0.7 * 0.9) / 4
@@ -250,10 +250,10 @@ export default {
         return 325
       }
       if (this.$vuetify.breakpoint.lg) {
-        return 325
+        return 275
       }
       if (this.$vuetify.breakpoint.md) {
-        return 325
+        return 250
       }
       return 250
     },

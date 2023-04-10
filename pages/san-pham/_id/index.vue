@@ -10,6 +10,16 @@
               cover
               class="mb-4"
             ></v-img>
+            <img
+              v-for="(item, index) in productImages"
+              :key="index"
+              :src="item.url"
+              width="60"
+              height="60"
+              style="margin-right: 10px"
+              class="img-hover"
+              @click="imageView(index)"
+            />
           </v-col>
           <v-col cols="12" md="7">
             <div class="text-h5 font-weight-bold">
@@ -299,6 +309,19 @@ export default {
       messageSnackbar: '',
       quantity: '',
       selection: { unit: 'gói', price: 600000 },
+      images: [
+        {
+          name: 'image1',
+          url: 'http://54.255.46.159:8000/media/products/thumbnails/tra-hoa-qua-dau-biec-3-1024x1024.png',
+        },
+        {
+          name: 'image2',
+          url: 'http://54.255.46.159:8000/media/products/thumbnails/tra-hoa-qua-dau-biec-3-1024x1024.png',
+        },
+        {
+          url: 'http://54.255.46.159:8000/media/products/thumbnails/tra-hoa-qua-dau-biec-3-1024x1024.png',
+        },
+      ],
     }
   },
   validations: {
@@ -340,6 +363,16 @@ export default {
     products() {
       return this.$store.state.products.products
     },
+    productImages() {
+      return this.productDetail?.images.length
+        ? this.productDetail?.images.map((item, index) => {
+            return {
+              name: `image-${index}`,
+              url: item.image,
+            }
+          })
+        : []
+    },
     items() {
       return [
         {
@@ -366,8 +399,21 @@ export default {
       return getTwoRandomProducts(this.products)
     },
   },
+  watch: {
+    productImages: function (newValue, oldValue) {
+      if (oldValue.length === 0 && newValue.length > 0)
+        this.$imageViewer.images(this.productImages)
+    },
+  },
+  created() {
+    this.$imageViewer.images(this.productImages)
+  },
   methods: {
     formatNumber,
+    imageView(index) {
+      this.$imageViewer.index(index)
+      this.$imageViewer.show()
+    },
     openDialog() {
       this.selection = this.quantity
         ? this.productDetail.options.find(
@@ -426,6 +472,13 @@ export default {
 <style lang="scss" scoped>
 ::v-deep.v-input__slot {
   box-shadow: unset !important;
+}
+
+.img-hover {
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 .card-title {
   font-size: 14px;

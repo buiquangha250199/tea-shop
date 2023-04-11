@@ -268,6 +268,11 @@ a {
     }
   }
 }
+@media only screen and (min-width: 1024px) {
+  .v-breadcrumbs {
+    padding-left: 12px !important;
+  }
+}
 @media only screen and (max-width: 767px) {
   .v-window {
     height: 200px !important;

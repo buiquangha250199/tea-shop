@@ -341,6 +341,7 @@ export default {
     this.$store.dispatch('categories/fetchCategories')
     this.$store.dispatch('news/fetchNews')
     this.$store.dispatch('info/fetchInfo')
+    this.$store.dispatch('banners/fetchBanners')
   },
   methods: {
     handleScroll() {

@@ -20,17 +20,8 @@
         show-arrows-on-hover
         delimiter-icon="mdi-minus"
       >
-        <v-carousel-item>
-          <img class="banner-img" src="~/assets/img/banner/img-1.png" />
-        </v-carousel-item>
-        <v-carousel-item>
-          <img class="banner-img" src="~/assets/img/banner/img-2.png" />
-        </v-carousel-item>
-        <v-carousel-item>
-          <img class="banner-img" src="~/assets/img/banner/img-3.png" />
-        </v-carousel-item>
-        <v-carousel-item>
-          <img class="banner-img" src="~/assets/img/banner/img-4.png" />
+        <v-carousel-item v-for="(banner, index) in banners" :key="index">
+          <img class="banner-img" :src="banner.image" />
         </v-carousel-item>
       </v-carousel>
     </v-col>
@@ -329,6 +320,9 @@ export default {
     },
     categories() {
       return this.$store.state.categories.categories
+    },
+    banners() {
+      return this.$store.state.banners.banners || this.images
     },
     products() {
       return this.$store.state.products.products

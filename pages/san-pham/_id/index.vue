@@ -216,6 +216,7 @@
                       outlined
                       label="Số điện thoại"
                       hide-details
+                      class="formfield"
                       required
                       @blur="$v.tel.$touch()"
                       @input="$v.tel.$touch()"
@@ -230,8 +231,10 @@
                       item-value="price"
                       :error-messages="amountErrors"
                       outlined
+                      class="formfield"
                       hide-details
                       required
+                      small
                       return-object
                       @blur="$v.selection.$touch()"
                       @input="$v.selection.$touch()"
@@ -242,6 +245,7 @@
                       v-model="address"
                       :error-messages="getErrors('address')"
                       outlined
+                      class="formfield"
                       label="Địa chỉ giao hàng"
                       hide-details
                       required

@@ -233,6 +233,21 @@ a {
       font-size: 12px !important;
     }
   }
+  .formfield {
+    .v-input__slot {
+      min-height: auto !important;
+      height: 40px !important;
+    }
+  }
+  .v-text-field--outlined .v-label {
+    top: 10px !important;
+  }
+  .v-input__append-inner {
+    margin-top: 10px !important;
+  }
+  .v-text-field__slot textarea {
+    height: 100px;
+  }
 }
 
 @media only screen and (min-width: 768px) {

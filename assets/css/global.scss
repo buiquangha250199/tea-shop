@@ -170,6 +170,9 @@ a {
 }
 
 @media only screen and (min-width: 1024px) {
+  .app-link {
+    margin-left: 15px !important;
+  }
   .app-container {
     padding: 0 15%;
   }
@@ -205,6 +208,9 @@ a {
 }
 
 @media only screen and (max-width: 1023px) {
+  .sp {
+    display: block;
+  }
   .v-window {
     max-height: 300px;
   }
@@ -286,6 +292,12 @@ a {
 @media only screen and (min-width: 1024px) {
   .v-breadcrumbs {
     padding-left: 12px !important;
+  }
+  .pc {
+    display: block;
+  }
+  .sp {
+    display: none;
   }
 }
 @media only screen and (max-width: 767px) {

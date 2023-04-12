@@ -46,6 +46,10 @@
       app
     >
       <v-row align="center" class="app-link">
+        <v-btn class="text-btn -first" color="#fff" to="/" text>
+          <span class="pc">Trang chủ</span>
+          <span class="mdi mdi-home sp" style="font-size: 24px"></span>
+        </v-btn>
         <v-menu offset-y>
           <template #activator="{ on, attrs }">
             <v-btn class="menubtn" color="#fff" text v-bind="attrs" v-on="on">
@@ -76,9 +80,9 @@
           Liên hệ
         </v-btn>
       </v-row>
-      <v-spacer />
-      <v-spacer />
-      <v-spacer />
+      <v-spacer class="pc" />
+      <v-spacer class="pc" />
+      <v-spacer class="pc" />
     </v-app-bar>
     <v-main style="background-color: #f5f5f5">
       <v-container class="pb-8">
@@ -93,8 +97,8 @@
             <div class="content">
               <div class="title mb-2">Uy tín hàng đầu</div>
               <div class="text-normal text-body-2">
-                Thành lập hơn 5 Năm, đã phục vụ hơn 300.000 khách hàng trên cả
-                nước...
+                Được đổi, trả hàng nếu sản phẩm bị hư hỏng,bục túi,hoặc không có
+                hiệu quả
               </div>
             </div>
           </div>
@@ -115,10 +119,9 @@
           <div class="flex-center gap-3">
             <span class="icon mdi mdi-tea-outline"></span>
             <div class="content">
-              <div class="title mb-2">Sản phẩm đa dạng</div>
+              <div class="title mb-2">Hiệu quả khi sử dụng</div>
               <div class="text-normal text-body-2">
-                Cung cấp tất cả các loại tinh bột, thảo dược, bột trà xanh, mầm
-                đậu nành...
+                Trên 95% khách hàng đạt được hiệu quả tốt khi sử dụng sản phẩm
               </div>
             </div>
           </div>
@@ -228,10 +231,10 @@
       <v-row class="flex-center">
         <v-col cols="12">
           <p class="text-normal text-center">
-            © 2019 của {{ info.name }} <br />Giấy chứng nhận cơ sở đủ điều kiện
-            an toàn thực phẩm<br />Sản Phẩm không phải đúng với tất cả mọi
-            người, tùy vào mỗi cơ địa sẽ có những mức tác dụng khác nhau<br />Nội
-            dung được đăng tải lên website chỉ mang tính chất tham khảo
+            Giấy chứng nhận cơ sở đủ điều kiện an toàn thực phẩm<br />Sản Phẩm
+            không phải đúng với tất cả mọi người, tùy vào mỗi cơ địa sẽ có những
+            mức tác dụng khác nhau<br />Nội dung được đăng tải lên website chỉ
+            mang tính chất tham khảo
           </p>
         </v-col>
       </v-row>
@@ -577,13 +580,20 @@ export default {
   }
   .app-link {
     .text-btn {
-      font-size: 12px;
-      width: 20% !important;
+      font-size: 11px;
+      width: 17% !important;
       min-width: unset;
       height: 50px;
+      &.-first {
+        width: 5% !important;
+        margin-right: -15px;
+        height: 30px;
+      }
     }
     > .menubtn {
       font-size: 12px;
+      margin-left: 3px;
+      padding-left: 12px;
     }
   }
   .layout-footer {

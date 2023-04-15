@@ -94,9 +94,9 @@
               <div style="min-width: 25px">Gọi</div>
               <a
                 class="pl-2 pr-2"
-                href="tel:094.881.63.36"
+                :href="`tel:${info?.phone_number}`"
                 style="color: #c62828; display: block"
-                ><strong>094.881.63.36</strong></a
+                ><strong>{{ info?.phone_number }}</strong></a
               >
               để được tư vấn và mua hàng
             </div>
@@ -367,6 +367,9 @@ export default {
     },
     products() {
       return this.$store.state.products.products
+    },
+    info() {
+      return this.$store.state.info.info
     },
     productImages() {
       return this.productDetail?.images.length

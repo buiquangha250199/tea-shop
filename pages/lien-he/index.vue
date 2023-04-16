@@ -12,13 +12,11 @@
       <v-row>
         <v-col cols="12">
           <iframe
-            class="iframe"
-            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14896.824718384732!2d105.7938184!3d21.0244347!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1679755564750!5m2!1svi!2s"
-            max-height="600"
-            width="auto"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0706139784247!2d105.84190137529013!3d21.02986038061981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab963830f1f5%3A0xdd72405af77fb109!2zMSBQLiBUcuG6p24gUGjDuiwgSMOgbmcgQsO0bmcsIEhvw6BuIEtp4bq_bSwgSMOgIE7hu5lpIDEwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1681638316879!5m2!1svi!2s"
             style="border: 0"
             allowfullscreen=""
             loading="lazy"
+            class="iframe"
             referrerpolicy="no-referrer-when-downgrade"
           ></iframe>
         </v-col>
@@ -181,7 +179,7 @@ export default {
 <style lang="scss" scoped>
 .iframe {
   width: 100%;
-  height: 600px;
+  height: 450px;
 }
 @media only screen and (max-width: 767px) {
   .iframe {

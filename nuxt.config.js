@@ -64,7 +64,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'https://lashc.online/api/v1/',
+    baseUrl: 'https://admin.vicayconam.vn/api/v1/',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

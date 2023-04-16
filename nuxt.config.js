@@ -64,7 +64,7 @@ export default {
   },
 
   publicRuntimeConfig: {
-    baseUrl: 'http://54.255.46.159:8000/api/v1/',
+    baseUrl: 'https://lashc.online/api/v1/',
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

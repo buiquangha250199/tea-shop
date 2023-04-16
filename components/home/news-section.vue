@@ -43,8 +43,8 @@
         <v-col cols="12"
           ><div class="embed-responsive embed-responsive-4by3 mb-5">
             <iframe
-              width="360"
-              height="240"
+              width="320"
+              height="250"
               src="https://www.youtube.com/embed/6myMryDIVCk"
               title="YouTube video player"
               frameborder="0"

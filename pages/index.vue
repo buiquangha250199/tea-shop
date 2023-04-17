@@ -366,8 +366,7 @@ export default {
   height: auto !important;
 }
 .banner-img {
-  /* max-height: 500px; */
-  width: auto;
+  width: -webkit-fill-available;
   object-fit: cover;
 }
 .item-card-image {
@@ -386,7 +385,7 @@ export default {
   }
   .banner-img {
     max-height: 200px;
-    width: auto;
+    width: 100%;
     object-fit: cover;
   }
 }

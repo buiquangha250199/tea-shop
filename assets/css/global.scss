@@ -169,6 +169,14 @@ a {
   }
 }
 
+@media only screen and (min-width: 1220px) {
+  .ctitle {
+    font-size: 15px !important;
+    height: 90px;
+    overflow: hidden;
+  }
+}
+
 @media only screen and (min-width: 1024px) {
   .app-link {
     margin-left: 15px !important;
@@ -187,7 +195,9 @@ a {
       height: 175px;
     }
     .ctitle {
-      font-size: 15px !important;
+      font-size: 13px !important;
+      height: 80px;
+      overflow: hidden;
     }
   }
   .top-header {
@@ -237,6 +247,8 @@ a {
   .card-item {
     .ctitle {
       font-size: 12px !important;
+      height: 107px;
+      overflow: hidden;
     }
   }
   .formfield {
@@ -338,6 +350,8 @@ a {
   }
   .product-container .card-item .ctitle {
     font-size: 12px !important;
+    height: 80px;
+    overflow: hidden;
   }
 }
 

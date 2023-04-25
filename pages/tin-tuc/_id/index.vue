@@ -8,19 +8,13 @@
     </v-breadcrumbs>
     <v-row>
       <div class="text-h4 ml-3 mt-4">{{ newsDetail?.title }}</div>
-      <v-col cols="12" md="9">
+      <v-col cols="12">
         <div class="text-body mb-4">
           <span class="mdi mdi-calendar-month-outline mr-1"></span
           >{{ formatDate(newsDetail?.created_at) }}
           <span class="mdi mdi-eye-outline mr-1 ml-2"></span
           >{{ newsDetail?.views }} lượt xem
         </div>
-        <v-img
-          max-height="300px"
-          max-width="450px"
-          :src="newsDetail?.thumbnail"
-          class="mb-6"
-        ></v-img>
         <div class="mb-8 pr-8" v-html="newsDetail?.body"></div>
       </v-col>
       <v-col cols="12" md="3" class="sp">

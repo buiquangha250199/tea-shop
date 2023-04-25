@@ -6,8 +6,10 @@
         <v-icon>mdi-chevron-right</v-icon>
       </template>
     </v-breadcrumbs>
-    <v-row>
-      <div class="text-h4 ml-3 mt-4">{{ newsDetail?.title }}</div>
+    <v-row class="news-content">
+      <div class="text-h4 ml-3 mt-4" style="font-weight: 500 !important">
+        {{ newsDetail?.title }}
+      </div>
       <v-col cols="12">
         <div class="text-body mb-4">
           <span class="mdi mdi-calendar-month-outline mr-1"></span
@@ -88,3 +90,16 @@ export default {
   },
 }
 </script>
+<style lang="scss" scoped>
+@media only screen and (min-width: 768px) {
+  .news-content {
+    padding-left: 12px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .news-content {
+    padding-left: 0 !important;
+  }
+}
+</style>

@@ -19,11 +19,13 @@
           >
             <v-img
               :src="item.thumbnail"
-              :height="imgSize.h * 0.75"
-              :width="imgSize.w * 0.75"
+              height="auto"
+              width="100%"
               style="margin: auto; border-radius: 0"
             ></v-img>
-            <v-card-title class="ctitle"> {{ item.title }}</v-card-title>
+            <v-card-title class="ctitle" style="text-align: left !important">
+              {{ item.title }}</v-card-title
+            >
           </v-card>
         </v-col>
       </v-row>

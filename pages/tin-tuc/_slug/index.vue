@@ -40,6 +40,14 @@
 <script>
 import { formatDate, getTwoRandomProducts } from '~/helper/common'
 export default {
+  data: () => ({
+    newsDetail: {},
+  }),
+  async fetch() {
+    this.newsDetail = await this.$axios.$get(
+      `${this.$config.baseUrl}news/${this.$route.params.slug}`
+    )
+  },
   computed: {
     items() {
       return [
@@ -59,11 +67,6 @@ export default {
           href: `/san-pham/${this.newsDetail?.id}`,
         },
       ]
-    },
-    newsDetail() {
-      return this.$store.state.news.news.find(
-        (item) => item.id === Number(this.$route.params.id)
-      )
     },
     products() {
       return this.$store.state.products.products

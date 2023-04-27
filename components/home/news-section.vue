@@ -9,7 +9,7 @@
           <v-card
             v-if="news.length > 0"
             class="card-item"
-            @click="$router.push(`/tin-tuc/${news[0]?.id}`)"
+            @click="$router.push(`/tin-tuc/${news[0]?.slug}`)"
           >
             <v-img
               max-height="200px"
@@ -26,7 +26,7 @@
               :src="`${item.thumbnail}`"
               width="120"
               style="cursor: pointer"
-              @click="$router.push(`/tin-tuc/${item.id}`)"
+              @click="$router.push(`/tin-tuc/${item?.slug}`)"
             />
             <nuxt-link :to="`/tin-tuc/${item.id}`" class="link block">{{
               item.title

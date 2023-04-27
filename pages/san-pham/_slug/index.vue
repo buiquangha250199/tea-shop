@@ -170,7 +170,7 @@
           v-for="product in randomProducts"
           :key="product?.id"
           class="card-item mb-6"
-          @click="$router.push(`/san-pham/${product?.id}`)"
+          @click="$router.push(`/san-pham/${product?.slug}`)"
         >
           <v-card-title class="card-title break-word"
             >Sản phẩm bán chạy</v-card-title
@@ -327,7 +327,13 @@ export default {
           url: 'http://54.255.46.159:8000/media/products/thumbnails/tra-hoa-qua-dau-biec-3-1024x1024.png',
         },
       ],
+      productDetail: {},
     }
+  },
+  async fetch() {
+    this.productDetail = await this.$axios.$get(
+      `${this.$config.baseUrl}products/${this.$route.params.slug}`
+    )
   },
   validations: {
     selection: {
@@ -359,11 +365,6 @@ export default {
       !this.$v.contactTel.required && errors.push('Vui lòng nhập giá trị')
 
       return errors
-    },
-    productDetail() {
-      return this.products.find(
-        (item) => item.id === Number(this.$route.params.id)
-      )
     },
     products() {
       return this.$store.state.products.products

@@ -96,7 +96,11 @@
         </template>
       </v-carousel>
     </v-col> -->
-    <v-col cols="12" class="product-container sub-product mb-8">
+    <v-col
+      v-if="categories.length"
+      cols="12"
+      class="product-container sub-product mb-8"
+    >
       <div class="title mb-6">
         <div
           class="text"
@@ -116,7 +120,7 @@
             class="card-item"
             :width="imgSize2.w"
             style="margin: auto"
-            @click="$router.push(`/san-pham/${product.id}`)"
+            @click="$router.push(`/san-pham/${product.slug}`)"
           >
             <v-img
               :src="product.thumbnail"
@@ -140,7 +144,11 @@
         ></v-col>
       </v-row>
     </v-col>
-    <v-col cols="12" class="product-container sub-product mb-8">
+    <v-col
+      v-if="categories.length > 1"
+      cols="12"
+      class="product-container sub-product mb-8"
+    >
       <div class="title mb-6">
         <div
           class="text"
@@ -160,7 +168,7 @@
             class="card-item"
             :width="imgSize2.w"
             style="margin: auto"
-            @click="$router.push(`/san-pham/${product.id}`)"
+            @click="$router.push(`/san-pham/${product.slug}`)"
           >
             <v-img
               :src="product.thumbnail"
@@ -184,7 +192,11 @@
         ></v-col>
       </v-row>
     </v-col>
-    <v-col cols="12" class="product-container sub-product mb-8">
+    <v-col
+      v-if="categories.length > 2"
+      cols="12"
+      class="product-container sub-product mb-8"
+    >
       <div class="title mb-6">
         <div
           class="text"
@@ -204,7 +216,7 @@
             class="card-item"
             style="margin: auto"
             :width="imgSize2.w"
-            @click="$router.push(`/san-pham/${product.id}`)"
+            @click="$router.push(`/san-pham/${product.slug}`)"
           >
             <v-img
               :src="product.thumbnail"

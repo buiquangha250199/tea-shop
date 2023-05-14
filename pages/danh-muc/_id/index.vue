@@ -18,7 +18,7 @@
         >
           <v-card
             class="card-item"
-            @click="$router.push(`/san-pham/${product?.slug}`)"
+            @click="$router.push(`/san-pham/${product?.id}`)"
           >
             <v-img
               :src="product.thumbnail"

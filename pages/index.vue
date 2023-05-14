@@ -120,7 +120,7 @@
             class="card-item"
             :width="imgSize2.w"
             style="margin: auto"
-            @click="$router.push(`/san-pham/${product.slug}`)"
+            @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
@@ -168,7 +168,7 @@
             class="card-item"
             :width="imgSize2.w"
             style="margin: auto"
-            @click="$router.push(`/san-pham/${product.slug}`)"
+            @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"
@@ -216,7 +216,7 @@
             class="card-item"
             style="margin: auto"
             :width="imgSize2.w"
-            @click="$router.push(`/san-pham/${product.slug}`)"
+            @click="$router.push(`/san-pham/${product.id}`)"
           >
             <v-img
               :src="product.thumbnail"

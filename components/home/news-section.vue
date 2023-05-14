@@ -28,7 +28,7 @@
               style="cursor: pointer"
               @click="$router.push(`/tin-tuc/${item?.slug}`)"
             />
-            <nuxt-link :to="`/tin-tuc/${item.id}`" class="link block">{{
+            <nuxt-link :to="`/tin-tuc/${item?.slug}`" class="link block">{{
               item.title
             }}</nuxt-link>
           </div>

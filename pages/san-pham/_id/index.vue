@@ -170,7 +170,7 @@
           v-for="product in randomProducts"
           :key="product?.id"
           class="card-item mb-6"
-          @click="$router.push(`/san-pham/${product?.slug}`)"
+          @click="$router.push(`/san-pham/${product?.id}`)"
         >
           <v-card-title class="card-title break-word"
             >Sản phẩm bán chạy</v-card-title
@@ -332,7 +332,7 @@ export default {
   },
   async fetch() {
     this.productDetail = await this.$axios.$get(
-      `${this.$config.baseUrl}products/${this.$route.params.slug}`
+      `${this.$config.baseUrl}products/${this.$route.params.id}`
     )
   },
   validations: {

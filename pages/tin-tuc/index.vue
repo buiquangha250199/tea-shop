@@ -15,7 +15,7 @@
             class="card-item"
             style="margin: auto; padding-bottom: 12px"
             :width="imgSize.w"
-            @click="$router.push(`/tin-tuc/${item?.slug}`)"
+            @click="$router.push(`/tin-tuc/${item?.id}`)"
           >
             <v-img
               :src="item.thumbnail"

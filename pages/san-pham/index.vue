@@ -20,7 +20,7 @@
             class="card-item"
             style="margin: auto; padding-bottom: 12px"
             :width="imgSize.w"
-            @click="$router.push(`/san-pham/${product?.slug}`)"
+            @click="$router.push(`/san-pham/${product?.id}`)"
           >
             <v-img
               :src="product.thumbnail"

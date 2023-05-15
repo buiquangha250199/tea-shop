@@ -355,17 +355,20 @@ export default {
       else return allTeaProducts
     },
     firstProducts() {
-      const productsByType = getProductByType(this.products, 1)
+      const category = this.categories.length ? this.categories[0]?.id : 0
+      const productsByType = getProductByType(this.products, category)
       const num = productsByType.length >= 4 ? 4 : productsByType.length
       return productsByType.slice(0, num)
     },
     sub1Products() {
-      const productsByType = getProductByType(this.products, 2)
+      const category = this.categories.length >= 2 ? this.categories[1]?.id : 0
+      const productsByType = getProductByType(this.products, category)
       const num = productsByType.length >= 4 ? 4 : productsByType.length
       return productsByType.slice(0, num)
     },
     sub2Products() {
-      const productsByType = getProductByType(this.products, 3)
+      const category = this.categories.length >= 3 ? this.categories[2]?.id : 0
+      const productsByType = getProductByType(this.products, category)
       const num = productsByType.length >= 4 ? 4 : productsByType.length
       return productsByType.slice(0, num)
     },

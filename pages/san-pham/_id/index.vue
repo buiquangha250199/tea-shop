@@ -166,7 +166,44 @@
         </v-row>
       </v-col>
       <v-col cols="12" md="3" class="pc product-container">
-        <v-card
+        <div class="right">
+          <div class="item">
+            <div class="top">
+              <div class="icon mdi mdi-thumb-up-outline"></div>
+            </div>
+            <div class="content">
+              <div class="title">Uy tín hàng đầu</div>
+              <div class="text">
+                Được đổi, trả hàng nếu sản phẩm bị hư hỏng, bục túi, hoặc không
+                có hiệu quả
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="top">
+              <div class="icon mdi mdi-truck-delivery"></div>
+            </div>
+            <div class="content">
+              <div class="title">Giao hàng nhanh chóng</div>
+              <div class="text">
+                Giao hàng 24h trong nội thành và giao hàng qua bưu điện ở tỉnh
+                khác...
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="top">
+              <div class="icon mdi mdi-tea-outline"></div>
+            </div>
+            <div class="content">
+              <div class="title">Hiệu quả khi sử dụng</div>
+              <div class="text">
+                Trên 95% khách hàng đạt được hiệu quả tốt khi sử dụng sản phẩm
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <v-card
           v-for="product in randomProducts"
           :key="product?.id"
           class="card-item mb-6"
@@ -184,7 +221,7 @@
           <v-card-subtitle class="subtitle">
             {{ product?.price }}₫ /{{ product?.unit }}
           </v-card-subtitle>
-        </v-card>
+        </v-card> -->
       </v-col>
       <v-row justify="center">
         <v-dialog v-if="dialog" v-model="dialog" max-width="560">
@@ -290,6 +327,9 @@
         <strong> {{ messageSnackbar }} </strong>
       </v-snackbar>
     </v-row>
+    <v-row class="mb-8">
+      <div v-html="productDetail?.detail"></div>
+    </v-row>
   </div>
 </template>
 <script>
@@ -373,8 +413,8 @@ export default {
       return this.$store.state.info.info
     },
     productImages() {
-      return this.productDetail?.images.length
-        ? this.productDetail?.images.map((item, index) => {
+      return this.productDetail?.images?.length
+        ? this.productDetail?.images?.map((item, index) => {
             return {
               name: `image-${index}`,
               url: item.image,
@@ -502,6 +542,41 @@ export default {
 }
 .product-container .v-card {
   width: 80% !important;
+}
+
+.product-container {
+  .content {
+    text-align: center;
+  }
+  .content > .title {
+    font-size: 16px !important;
+  }
+  .content > .text {
+    font-size: 15px !important;
+  }
+  .right {
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 15px;
+  }
+
+  .item {
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .icon {
+    border: 1px solid #2e7d32;
+    border-radius: 60%;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: #2e7d32;
+    margin: auto;
+  }
 }
 .flex-center {
   .input {

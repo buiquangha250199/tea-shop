@@ -161,6 +161,15 @@ a {
 .v-main__wrap {
   padding: 0 15%;
 }
+
+.v-window__prev,
+.v-window__next {
+  top: calc(50% - 15px) !important;
+}
+.v-carousel,
+.v-image.v-responsive.v-carousel__item.theme--light {
+  height: unset !important;
+}
 @media screen and (max-width: 1440px) {
   .card-item {
     .ctitle {
@@ -274,6 +283,10 @@ a {
   }
 }
 @media only screen and (max-width: 1023px) and (min-width: 768px) {
+  .v-window__prev,
+  .v-window__next {
+    top: 30% !important;
+  }
   .card-item {
     .v-image {
       height: 140px !important;

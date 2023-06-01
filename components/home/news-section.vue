@@ -5,22 +5,21 @@
         <div class="text">Tin tức</div>
       </nuxt-link>
       <v-row>
-        <v-col cols="12" md="4">
+        <v-col cols="12" md="6">
           <v-card
             v-if="news.length > 0"
             class="card-item"
             @click="$router.push(`/tin-tuc/${news[0]?.slug}`)"
           >
             <v-img
-              max-height="200px"
               class="news-img"
-              :src="news[0].thumbnail"
+              src="/assets/img/banner/img-1.png"
               cover
             ></v-img>
             <v-card-title class="ctitle"> {{ news[0].title }}</v-card-title>
           </v-card>
         </v-col>
-        <v-col cols="12" md="8">
+        <v-col cols="12" md="6">
           <div v-for="item in subNews" :key="item.id" class="news-item">
             <img
               :src="`${item.thumbnail}`"
@@ -75,6 +74,11 @@ export default {
 .news-img {
   display: block;
   margin: auto;
+  width: 100%;
+  height: 100%;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 .title {
   border-bottom: 1px solid #2e7d32;

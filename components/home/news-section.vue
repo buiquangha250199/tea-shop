@@ -11,11 +11,7 @@
             class="card-item"
             @click="$router.push(`/tin-tuc/${news[0]?.slug}`)"
           >
-            <v-img
-              class="news-img"
-              src="/assets/img/banner/img-1.png"
-              cover
-            ></v-img>
+            <v-img class="news-img" :src="news[0]?.thumbnail" cover></v-img>
             <v-card-title class="ctitle"> {{ news[0].title }}</v-card-title>
           </v-card>
         </v-col>
